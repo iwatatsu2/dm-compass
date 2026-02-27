@@ -154,25 +154,82 @@ export function Section5_T2DAlgorithm() {
 
       {/* HbA1c目標 */}
       <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">HbA1c 目標値の個別化</h3>
-        <div className="space-y-2 text-sm">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-green-950/20 border border-green-700/50 rounded p-2">
-              <p className="font-semibold text-green-400 text-xs mb-1">積極的目標（&lt;6.5%）</p>
-              <p className="text-xs">若年、罹病期間短、合併症なし</p>
+        <h3 className="font-semibold mb-3 text-primary text-base">HbA1c 目標値（日本糖尿病学会準拠）</h3>
+        {/* 一般成人 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-muted-foreground mb-2">■ 血糖コントロールの目標（一般成人）</p>
+          <div className="grid grid-cols-3 gap-2 text-xs">
+            <div className="bg-green-950/20 border border-green-700/50 rounded p-2 text-center">
+              <p className="font-bold text-green-400 text-sm">6.0未満</p>
+              <p className="text-muted-foreground mt-1">血糖正常化を
+目指す際の目標</p>
+              <p className="text-xs text-muted-foreground mt-1">注1）食事・運動療法のみで達成可能な場合</p>
             </div>
-            <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-2">
-              <p className="font-semibold text-yellow-400 text-xs mb-1">標準目標（&lt;7.0%）</p>
-              <p className="text-xs">一般的な2型糖尿病患者</p>
+            <div className="bg-primary/10 border border-primary/50 rounded p-2 text-center">
+              <p className="font-bold text-primary text-sm">7.0未満</p>
+              <p className="text-muted-foreground mt-1">合併症予防の
+ための目標</p>
+              <p className="text-xs text-muted-foreground mt-1">注２）空腹時血糖&lt;130、食後2h&lt;180 mg/dL</p>
             </div>
-            <div className="bg-orange-950/20 border border-orange-700/50 rounded p-2">
-              <p className="font-semibold text-orange-400 text-xs mb-1">緩和目標（&lt;8.0%）</p>
-              <p className="text-xs">高齢者、低血糖リスク高</p>
+            <div className="bg-orange-950/20 border border-orange-700/50 rounded p-2 text-center">
+              <p className="font-bold text-orange-400 text-sm">8.0未満</p>
+              <p className="text-muted-foreground mt-1">治療強化が
+困難な際の目標</p>
+              <p className="text-xs text-muted-foreground mt-1">注３）低血糖等副作用、その他の理由で強化困難な場合</p>
             </div>
-            <div className="bg-red-950/20 border border-red-700/50 rounded p-2">
-              <p className="font-semibold text-red-400 text-xs mb-1">最緩和（&lt;8.5%）</p>
-              <p className="text-xs">フレイル、認知症、終末期</p>
-            </div>
+          </div>
+          <p className="text-xs text-muted-foreground mt-2">注４）いずれも成人に対する目標値であり、妈娠期は除く</p>
+        </div>
+
+        {/* 高齢者 */}
+        <div>
+          <p className="text-xs font-semibold text-yellow-400 mb-2">■ 高齢者糖尿病の血糖コントロール目標（HbA1c値）</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs border-collapse">
+              <thead>
+                <tr className="bg-muted/30">
+                  <th className="border border-border/50 p-1.5 text-left">患者の特徴・健康状態</th>
+                  <th className="border border-border/50 p-1.5 text-center">カテゴリーI<br/><span className="font-normal text-muted-foreground">認知機能正常<br/>かつADL自立</span></th>
+                  <th className="border border-border/50 p-1.5 text-center">カテゴリーII<br/><span className="font-normal text-muted-foreground">軽度認知障害、<br/>手段的ADL低下</span></th>
+                  <th className="border border-border/50 p-1.5 text-center">カテゴリーIII<br/><span className="font-normal text-muted-foreground">中度以上の認知症<br/>基本的ADL低下</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-border/50 p-1.5">重症低血糖が危惱される薬剤<br/><span className="text-muted-foreground">SU薬、インスリンを使用しない</span></td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-green-400">7.0未満</p>
+                  </td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-green-400">7.0未満</p>
+                  </td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-yellow-400">8.0未満</p>
+                  </td>
+                </tr>
+                <tr className="bg-muted/10">
+                  <td className="border border-border/50 p-1.5">重症低血糖が危惱される薬剤<br/><span className="text-muted-foreground">SU薬、インスリンを使用する</span></td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-yellow-400">65歳以上75歳未満</p>
+                    <p className="text-primary">7.5未満（下限6.5%）</p>
+                    <p className="text-yellow-400">75歳以上</p>
+                    <p className="text-primary">8.0未満（下限7.0%）</p>
+                  </td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-orange-400">8.0未満（下限 7.0%）</p>
+                  </td>
+                  <td className="border border-border/50 p-1.5 text-center">
+                    <p className="font-bold text-red-400">8.5未満（下限 7.5%）</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-2 text-xs text-muted-foreground space-y-1">
+            <p>●治療目標は、年齢、罹病期間、低血糖の危険性、サポート体制などに加え、高齢者では認知機能・ADL、幹存疾患なども考慮して個別に設定する</p>
+            <p>●加齢に伴って重症低血糖の危険性が高くなるため十分注意する</p>
+            <p className="text-yellow-300">●カテゴリーIIIに該当する状態で、多剤併用による有害作用が懸念される場合や、重筎な幹存疾患を有する場合には、8.5%未満を目標とすることも許容される</p>
+            <p className="text-xs text-muted-foreground">（日本糖尿病学会編・著：糖尿病治療ガイド2018-2019 P29、日本老年医学会・日本糖尿病学会編・著：高齢者糖尿病診療ガイド2017 P46）</p>
           </div>
         </div>
       </Card>

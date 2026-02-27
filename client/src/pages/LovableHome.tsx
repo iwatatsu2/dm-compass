@@ -10,6 +10,7 @@ import { Section8_SlidingScale } from '@/sections/Section8_SlidingScale';
 import { Section9_Perioperative } from '@/sections/Section9_Perioperative';
 import { Section10_DietCalc } from '@/sections/Section10_DietCalc';
 import { Section11_Complications } from '@/sections/Section11_Complications';
+import { Section12_CognitiveCheck } from '@/sections/Section12_CognitiveCheck';
 
 interface SectionDef {
   id: number;
@@ -30,6 +31,7 @@ const sections: SectionDef[] = [
   { id: 9, label: '周術期血糖管理', subtitle: '休薬・再開スケジュール', component: <Section9_Perioperative /> },
   { id: 10, label: '食事・カロリー計算', subtitle: '必要エネルギー & 蛋白制限', component: <Section10_DietCalc /> },
   { id: 11, label: '糖尿病合併症', subtitle: '網膜症・腎症・神経障害', component: <Section11_Complications /> },
+  { id: 12, label: '認知機能チェック', subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定', component: <Section12_CognitiveCheck /> },
 ];
 
 export default function LovableHome() {
@@ -211,9 +213,12 @@ export default function LovableHome() {
             </div>
 
             {/* フッター免責 */}
-            <div className="mt-6 pb-6 text-center">
+            <div className="mt-6 pb-6 text-center space-y-2">
               <p className="text-xs text-muted-foreground">
                 本アプリは教育目的であり、最終的な治療判断は主治医の責任で行ってください。最新添付文書をご確認ください。
+              </p>
+              <p className="text-xs text-muted-foreground/60">
+                制作：Dr.いわたつ ／ 参考：日本糖尿病学会ガイドライン・日本老年医学会ガイドライン
               </p>
             </div>
           </div>

@@ -26,6 +26,174 @@ export function Section1_HyperglycemicEmergency() {
 
   return (
     <div className="space-y-6">
+
+      {/* ===== 治療プロトコル（添付資料準拠） ===== */}
+      <Card className="bg-card border-border p-4">
+        <h3 className="font-bold mb-4 text-primary text-base text-center">
+          ≪ DKA・HHS 初期対応プロトコル ≫
+        </h3>
+
+        {/* 血糖値フロー */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-muted-foreground mb-2">■ 血糖値（mg/dL）の推移目標</p>
+          <div className="flex items-center gap-2 text-xs flex-wrap">
+            <div className="bg-red-950/40 border border-red-700/60 rounded px-3 py-2 text-center min-w-[100px]">
+              <p className="font-bold text-red-400">初期</p>
+              <p>High（&gt;600）〜400</p>
+            </div>
+            <span className="text-muted-foreground">→</span>
+            <div className="bg-yellow-950/40 border border-yellow-700/60 rounded px-3 py-2 text-center min-w-[120px]">
+              <p className="font-bold text-yellow-400">中期目標</p>
+              <p>DKA：250〜300</p>
+              <p>HHS：300〜350</p>
+            </div>
+            <span className="text-muted-foreground">→</span>
+            <div className="bg-green-950/40 border border-green-700/60 rounded px-3 py-2 text-center min-w-[120px]">
+              <p className="font-bold text-green-400">最終目標</p>
+              <p>DKA：150〜200</p>
+              <p>HHS：250〜300</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 血糖測定間隔 */}
+        <div className="mb-4 bg-muted/20 rounded p-3">
+          <p className="text-xs font-semibold text-muted-foreground mb-1">■ 血糖測定間隔</p>
+          <div className="flex items-center gap-2 text-xs flex-wrap">
+            <span className="bg-border/50 rounded px-2 py-1">初期：30分〜1時間毎</span>
+            <span className="text-muted-foreground">→</span>
+            <span className="bg-border/50 rounded px-2 py-1">中期：30分〜1時間毎</span>
+            <span className="text-muted-foreground">→</span>
+            <span className="bg-border/50 rounded px-2 py-1">安定後：2〜4時間毎</span>
+          </div>
+        </div>
+
+        {/* インスリン投与量 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-yellow-400 mb-2">■ インスリン投与量（BSは避ける！）</p>
+          <div className="grid grid-cols-1 gap-3 text-xs">
+            <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
+              <p className="font-semibold mb-2">【初期】H-R 50単位 + PSS 49.5mL（シリンジポンプ）</p>
+              <ul className="space-y-1">
+                <li>• 0.15 U/kg iv（ボーラス）</li>
+                <li>• 0.1 U/kg/h div（持続静注）</li>
+                <li className="text-muted-foreground">例）50kgの場合：7.5mL フラッシュ → 5mL/hで開始</li>
+              </ul>
+            </div>
+            <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
+              <p className="font-semibold mb-2">【中期】0.05 U/kg/h（2〜3 mL/h）まで流量を減量する</p>
+              <div className="bg-yellow-900/30 border border-yellow-600/40 rounded p-2">
+                <p className="font-semibold text-yellow-300">1時間あたりの血糖低下量が</p>
+                <ul className="mt-1 space-y-0.5">
+                  <li>• 50 以上 → インスリン流量を半減</li>
+                  <li>• 50 未満 → そのまま継続</li>
+                </ul>
+              </div>
+            </div>
+            <div className="bg-blue-950/20 border border-blue-700/50 rounded p-3">
+              <p className="font-semibold mb-2">【安定後】血糖値に応じた皮下注スケール</p>
+              <div className="grid grid-cols-2 gap-1 text-xs">
+                <div className="font-semibold text-muted-foreground">BS（mg/dL）</div>
+                <div className="font-semibold text-muted-foreground">インスリン</div>
+                <div>〜100</div><div className="text-blue-400">-1.0 mL/h</div>
+                <div>101〜150</div><div className="text-blue-400">-0.5 mL/h</div>
+                <div>151〜200</div><div className="text-green-400">そのまま</div>
+                <div>201〜250</div><div className="text-yellow-400">H-R 2U s.c</div>
+                <div>251〜300</div><div className="text-orange-400">H-R 4U s.c</div>
+                <div>301〜</div><div className="text-red-400">H-R 6U s.c</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Na・輸液選択 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-cyan-400 mb-2">■ Na と輸液選択</p>
+          <div className="grid grid-cols-1 gap-2 text-xs">
+            <div className="bg-cyan-950/20 border border-cyan-700/50 rounded p-3">
+              <p className="font-semibold mb-1">初期輸液（0.9%PSS）</p>
+              <ul className="space-y-0.5">
+                <li>• Na Low〜normal：生理食塩水（0.9%PSS）</li>
+                <li>• Na High：生食と蒸留水の並列（0.45%PSS）</li>
+              </ul>
+            </div>
+            <div className="bg-cyan-950/20 border border-cyan-700/50 rounded p-3">
+              <p className="font-semibold mb-2">中期輸液の選択（0.45%PSS + 5%GLU）</p>
+              <div className="flex gap-4 items-center">
+                <div className="bg-primary/20 border border-primary/50 rounded p-2 text-center">
+                  <p className="font-bold text-primary text-sm">ST3</p>
+                  <p className="text-muted-foreground">K &lt; 5.0</p>
+                </div>
+                <span className="text-muted-foreground">or</span>
+                <div className="bg-blue-900/30 border border-blue-600/50 rounded p-2 text-center">
+                  <p className="font-bold text-blue-400 text-sm">ST1</p>
+                  <p className="text-muted-foreground">K &gt; 5.0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* K補正 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-green-400 mb-2">■ K（カリウム）補正</p>
+          <div className="bg-green-950/20 border border-green-700/50 rounded p-3 text-xs">
+            <div className="grid grid-cols-2 gap-2">
+              <span className="font-semibold">K &lt; 3.3</span>
+              <span>40 mEq/h で混注（インスリン開始前に補正）</span>
+              <span className="font-semibold">K 3.3〜5.0</span>
+              <span>20〜30 mEq/L で混注</span>
+              <span className="font-semibold">K &gt; 5.0</span>
+              <span>2時間毎に check</span>
+            </div>
+          </div>
+        </div>
+
+        {/* HCO3補正 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-purple-400 mb-2">■ HCO₃ 補正（7%メイロン）</p>
+          <div className="bg-purple-950/20 border border-purple-700/50 rounded p-3 text-xs">
+            <div className="grid grid-cols-2 gap-2">
+              <span className="font-semibold">pH &lt; 6.9</span>
+              <span>100 mEq（120mL / 30分）</span>
+              <span className="font-semibold">pH 6.9〜7.0</span>
+              <span>50 mEq（60mL / 15分）</span>
+              <span className="font-semibold">pH &gt; 7.0</span>
+              <span>no HCO₃（7%メイロン不要）</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 輸液量 */}
+        <div className="mb-4">
+          <p className="text-xs font-semibold text-orange-400 mb-2">■ 輸液量</p>
+          <div className="bg-orange-950/20 border border-orange-700/50 rounded p-3 text-xs space-y-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="text-center">
+                <p className="font-semibold">BP normal</p>
+                <p>500 mL/h（200〜700 mL/h）</p>
+              </div>
+              <span className="text-muted-foreground">→</span>
+              <p>200 mL/h（150〜250 mL/h）</p>
+              <span className="text-muted-foreground">→</span>
+              <p>1500〜2500 mL/day（n.p.o）</p>
+            </div>
+            <p><span className="font-semibold">BP 低下時：</span>1000 mL/h</p>
+          </div>
+        </div>
+
+        {/* BS<70 低血糖対応 */}
+        <div>
+          <p className="text-xs font-semibold text-red-400 mb-2">■ BS &lt; 70 の時（低血糖対応）</p>
+          <div className="bg-red-950/20 border border-red-700/50 rounded p-3 text-xs space-y-1">
+            <p>• 50%Glu 20mL iv</p>
+            <p>• 30分後 再検</p>
+            <p>• BS &gt; 100 まで繰り返す</p>
+            <p className="text-yellow-300">• ただし再検時はインスリン変更しない</p>
+          </div>
+        </div>
+      </Card>
+
       {/* DKA診断基準 */}
       <AlertBox type="danger" title="DKA（糖尿病ケトアシドーシス）診断基準">
         <div className="space-y-2 text-sm">
