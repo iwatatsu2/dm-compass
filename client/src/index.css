@@ -43,76 +43,76 @@
 }
 
 :root {
-  /* DM Compass - 黒背景・白文字テーマ */
-  --primary: oklch(0.5 0.15 142.5); /* 緑（CALCボタン） */
-  --primary-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.5 0.15 142.5);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --chart-1: oklch(0.5 0.15 142.5);
+  /* DM Compass v3.0 - Lovableデザインテーマ */
+  --primary: oklch(0.9 0.2 110); /* 黄色（アクセント） */
+  --primary-foreground: oklch(0 0 0);
+  --sidebar-primary: oklch(0.9 0.2 110);
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --chart-1: oklch(0.9 0.2 110);
   --chart-2: oklch(0.5 0.1 259.815);
   --chart-3: oklch(0.6 0.15 142.5);
-  --chart-4: oklch(0.5 0.15 142.5);
+  --chart-4: oklch(0.9 0.2 110);
   --chart-5: oklch(0.4 0.15 142.5);
   --radius: 0.65rem;
   --background: oklch(0 0 0); /* 完全黒 */
   --foreground: oklch(1 0 0); /* 白 */
-  --card: oklch(0.1 0 0); /* 暗い紅色 */
+  --card: oklch(0.12 0 0); /* 暗いグレー */
   --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.1 0 0);
+  --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(1 0 0);
-  --secondary: oklch(0.5 0.1 259.815); /* 青（GUIDEボタン） */
+  --secondary: oklch(1 0.2 0); /* 赤（警告） */
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.4 0 0);
   --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.5 0.15 142.5);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.6 0.2 27.325);
+  --accent: oklch(0.9 0.2 110);
+  --accent-foreground: oklch(0 0 0);
+  --destructive: oklch(1 0.2 0);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.2 0 0);
   --input: oklch(0.15 0 0);
-  --ring: oklch(0.5 0.15 142.5);
-  --sidebar: oklch(0.05 0 0);
+  --ring: oklch(0.9 0.2 110);
+  --sidebar: oklch(0.08 0 0);
   --sidebar-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.5 0.15 142.5);
-  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.9 0.2 110);
+  --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.5 0.15 142.5);
+  --sidebar-ring: oklch(0.9 0.2 110);
 }
 
 .dark {
-  /* DM Compass - 黒背景・白文字テーマ */
-  --primary: oklch(0.5 0.15 142.5); /* 緑（CALCボタン） */
-  --primary-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.5 0.15 142.5);
-  --sidebar-primary-foreground: oklch(1 0 0);
+  /* DM Compass v3.0 - Lovableデザインテーマ */
+  --primary: oklch(0.9 0.2 110); /* 黄色（アクセント） */
+  --primary-foreground: oklch(0 0 0);
+  --sidebar-primary: oklch(0.9 0.2 110);
+  --sidebar-primary-foreground: oklch(0 0 0);
   --background: oklch(0 0 0); /* 完全黒 */
   --foreground: oklch(1 0 0); /* 白 */
-  --card: oklch(0.1 0 0); /* 暗い紅色 */
+  --card: oklch(0.12 0 0); /* 暗いグレー */
   --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.1 0 0);
+  --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(1 0 0);
-  --secondary: oklch(0.5 0.1 259.815); /* 青（GUIDEボタン） */
+  --secondary: oklch(1 0.2 0); /* 赤（警告） */
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.4 0 0);
   --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.5 0.15 142.5);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.6 0.2 27.325);
+  --accent: oklch(0.9 0.2 110);
+  --accent-foreground: oklch(0 0 0);
+  --destructive: oklch(1 0.2 0);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.2 0 0);
   --input: oklch(0.15 0 0);
-  --ring: oklch(0.5 0.15 142.5);
-  --chart-1: oklch(0.5 0.15 142.5);
+  --ring: oklch(0.9 0.2 110);
+  --chart-1: oklch(0.9 0.2 110);
   --chart-2: oklch(0.5 0.1 259.815);
   --chart-3: oklch(0.6 0.15 142.5);
-  --chart-4: oklch(0.5 0.15 142.5);
+  --chart-4: oklch(0.9 0.2 110);
   --chart-5: oklch(0.4 0.15 142.5);
-  --sidebar: oklch(0.05 0 0);
+  --sidebar: oklch(0.08 0 0);
   --sidebar-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.5 0.15 142.5);
-  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.9 0.2 110);
+  --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.5 0.15 142.5);
+  --sidebar-ring: oklch(0.9 0.2 110);
 }
 
 @layer base {

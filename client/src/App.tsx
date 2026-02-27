@@ -8,14 +8,16 @@ import Home from "./pages/Home";
 import CalcPage from "./pages/CalcPage";
 import GuidePage from "./pages/GuidePage";
 import GuidePageEnhanced from "./pages/GuidePageEnhanced";
+import LovableHome from "./pages/LovableHome";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={LovableHome} />
       <Route path="/calc" component={CalcPage} />
       <Route path="/guide" component={GuidePageEnhanced} />
+      <Route path="/classic" component={Home} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
