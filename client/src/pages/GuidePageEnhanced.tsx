@@ -34,7 +34,7 @@ export default function GuidePageEnhanced() {
       const matchesSearch =
         item.brandName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.genericName?.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesFilter = !selectedFilter || item.category === selectedFilter;
+      const matchesFilter = !selectedFilter || selectedFilter === '__all__' || item.category === selectedFilter;
       return matchesSearch && matchesFilter;
     });
   }, [insulinData, searchQuery, selectedFilter]);
@@ -46,7 +46,7 @@ export default function GuidePageEnhanced() {
       const matchesSearch =
         item.brandName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.genericName?.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesFilter = !selectedFilter || item.class === selectedFilter;
+      const matchesFilter = !selectedFilter || selectedFilter === '__all__' || item.class === selectedFilter;
       return matchesSearch && matchesFilter;
     });
   }, [oralData, searchQuery, selectedFilter]);
@@ -83,7 +83,7 @@ export default function GuidePageEnhanced() {
             onClick={() => {
               setActiveTab("insulin");
               setSearchQuery("");
-              setSelectedFilter("");
+              setSelectedFilter("__all__");
             }}
           />
           <TabButton
@@ -92,7 +92,7 @@ export default function GuidePageEnhanced() {
             onClick={() => {
               setActiveTab("oral");
               setSearchQuery("");
-              setSelectedFilter("");
+              setSelectedFilter("__all__");
             }}
           />
           <TabButton
@@ -141,7 +141,7 @@ export default function GuidePageEnhanced() {
                   <SelectValue placeholder="すべてを表示" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">すべてを表示</SelectItem>
+                  <SelectItem value="__all__">すべてを表示</SelectItem>
                   {(activeTab === "insulin" ? insulinCategories : oralClasses).map((cat) => (
                     <SelectItem key={cat} value={cat}>
                       {cat}
