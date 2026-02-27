@@ -48,33 +48,50 @@ export function Section4_DiabetesType() {
                 <ul className="space-y-1.5">
                   <li className="flex gap-2"><span className="text-green-400 flex-shrink-0">●</span><span>血糖値（①〜③）のいずれか + HbA1c（④）が<strong>同一検体</strong>で確認された場合</span></li>
                   <li className="flex gap-2"><span className="text-green-400 flex-shrink-0">●</span><span>血糖値（①〜③）のいずれかが<strong>別の日に2回</strong>確認された場合</span></li>
-                  <li className="flex gap-2"><span className="text-green-400 flex-shrink-0">●</span><span>糖尿病の典型症状（口渇・多飲・多尿・体重減少）または確実な糖尿病網膜症があり、血糖値（①〜③）のいずれかが確認された場合</span></li>
-                </ul>
-              </div>
-              <div className="bg-blue-950/20 border border-blue-700/50 rounded p-3">
-                <p className="font-semibold text-blue-400 mb-2">【境界型（前糖尿病）】</p>
-                <ul className="space-y-1">
-                  <li>空腹時血糖：<span className="text-yellow-400">110〜125 mg/dL</span>（IFG）</li>
-                  <li>75g OGTT 2時間値：<span className="text-yellow-400">140〜199 mg/dL</span>（IGT）</li>
-                  <li>HbA1c：<span className="text-yellow-400">6.0〜6.4%</span></li>
-                </ul>
-              </div>
-              <div className="bg-green-950/20 border border-green-700/50 rounded p-3">
-                <p className="font-semibold text-green-400 mb-2">【正常型】</p>
-                <ul className="space-y-1">
-                  <li>空腹時血糖：<span className="font-bold text-green-300">&lt; 110 mg/dL</span></li>
-                  <li>75g OGTT 2時間値：<span className="font-bold text-green-300">&lt; 140 mg/dL</span></li>
                 </ul>
               </div>
             </div>
           </Card>
-          <AlertBox type="warning">
-            <p className="text-xs">HbA1c単独では診断確定できません。溶血性貧血・鉄欠乏性貧血・肝硬変ではHbA1cが偽低値になる場合があります。</p>
-          </AlertBox>
+
+          <Card className="bg-card border-border p-4">
+            <h3 className="font-semibold mb-3 text-primary text-base">緩徐進行1型糖尿病（SPIDDM）診断基準</h3>
+            <div className="space-y-3 text-xs">
+              <div className="bg-blue-950/20 border border-blue-700/50 rounded p-3">
+                <p className="font-semibold text-blue-400 mb-2">【必須項目】</p>
+                <div className="space-y-2">
+                  <div>
+                    <p className="font-semibold text-blue-300 mb-1">1. 経過のどこかの時点で膵島関連自己抗体が陽性である。a)</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-blue-300 mb-1">2. 原則として、糖尿病の診断時、ケトーシスもしくはケトアシドーシスはなく、ただちには高血糖是正のためインスリン療法が必要とならない。</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-blue-300 mb-1">3. 経過とともにインスリン分泌能が緩徐に低下し、糖尿病の診断後 3 ヶ月b)を過ぎてからインスリン療法が必要になり、最終観察時点で内因性インスリン欠乏状態（空腹時血清 C ペプチド＜0.6ng/ml）である。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-green-950/20 border border-green-700/50 rounded p-3">
+                <p className="font-semibold text-green-400 mb-2">【判定】</p>
+                <ul className="space-y-1.5">
+                  <li className="flex gap-2"><span className="text-green-400 flex-shrink-0">●</span><span>上記 1、2、3 を満たす場合、「<strong>緩徐進行 1 型糖尿病（definite）</strong>」と診断する。</span></li>
+                  <li className="flex gap-2"><span className="text-green-400 flex-shrink-0">●</span><span>上記 1、2 のみを満たす場合は、インスリン非依存状態の糖尿病であり、「<strong>緩徐進行 1 型糖尿病（probable）</strong>」とする。</span></li>
+                </ul>
+              </div>
+
+              <div className="bg-muted/20 border border-border rounded p-3">
+                <p className="font-semibold text-muted-foreground mb-2">【注釈】</p>
+                <div className="space-y-1.5 text-xs text-muted-foreground">
+                  <p><span className="text-yellow-400">a)</span> 膵島関連自己抗体とは、グルタミン酸脱炭酸酵素（GAD）抗体、膵島細胞抗体（ICA）、Insulinoma-associated antigen-2（IA-2）抗体、亜鉛輸送担体 8（ZnT8）抗体、インスリン自己抗体（IAA）を指す。ただし、IAA はインスリン治療開始前に測定した場合に限る。</p>
+                  <p><span className="text-yellow-400">b)</span> 典型例は 6 ヶ月以上である。</p>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       )}
 
-      {activeTab === 'type1' && (
+      {activeTab === 'type1'  && (
         <div className="space-y-3">
           <Card className="bg-card border-border p-4">
             <h3 className="font-semibold mb-3 text-primary text-sm">1型糖尿病の分類</h3>

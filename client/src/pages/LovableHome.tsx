@@ -5,12 +5,14 @@ import { Section3_SugarIV } from '@/sections/Section3_SugarIV';
 import { Section4_DiabetesType } from '@/sections/Section4_DiabetesType';
 import { Section5_T2DAlgorithm } from '@/sections/Section5_T2DAlgorithm';
 import { Section6_OralDrugs } from '@/sections/Section6_OralDrugs';
+import { Section6_HbA1cTarget } from '@/sections/Section6_HbA1cTarget';
 import { Section7_InsulinGuide } from '@/sections/Section7_InsulinGuide';
 import { Section8_SlidingScale } from '@/sections/Section8_SlidingScale';
 import { Section9_Perioperative } from '@/sections/Section9_Perioperative';
 import { Section10_DietCalc } from '@/sections/Section10_DietCalc';
 import { Section11_Complications } from '@/sections/Section11_Complications';
 import { Section12_CognitiveCheck } from '@/sections/Section12_CognitiveCheck';
+import { Section14_About } from '@/sections/Section14_About';
 
 interface SectionDef {
   id: number;
@@ -25,13 +27,14 @@ const sections: SectionDef[] = [
   { id: 3, label: '糖分入り点滴・IVH', subtitle: '商品一覧 & インスリン混注量', component: <Section3_SugarIV /> },
   { id: 4, label: '糖尿病タイプ診断', subtitle: '診断基準（学会準拠）', component: <Section4_DiabetesType /> },
   { id: 5, label: '2型治療アルゴリズム', subtitle: '日本糖尿病学会 2023年版', component: <Section5_T2DAlgorithm /> },
-  { id: 6, label: '内服薬一覧', subtitle: '全クラス・腎機能調整', component: <Section6_OralDrugs /> },
-  { id: 7, label: 'インスリン完全ガイド', subtitle: '全製剤・混合製剤含む', component: <Section7_InsulinGuide /> },
-  { id: 8, label: 'スライディングスケール', subtitle: 'ISF25/50 自動生成', component: <Section8_SlidingScale /> },
-  { id: 9, label: '周術期血糖管理', subtitle: '休薬・再開スケジュール', component: <Section9_Perioperative /> },
-  { id: 10, label: '食事・カロリー計算', subtitle: '必要エネルギー & 蛋白制限', component: <Section10_DietCalc /> },
-  { id: 11, label: '糖尿病合併症', subtitle: '網膜症・腎症・神経障害', component: <Section11_Complications /> },
-  { id: 12, label: '認知機能チェック', subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定', component: <Section12_CognitiveCheck /> },
+  { id: 7, label: 'HbA1c目標値', subtitle: '個別化・高齢者対応', component: <Section6_HbA1cTarget /> },
+  { id: 8, label: '内服薬一覧', subtitle: '全クラス・腎機能調整', component: <Section6_OralDrugs /> },
+  { id: 8, label: 'インスリン完全ガイド', subtitle: '全製剤・混合製剤含む', component: <Section7_InsulinGuide /> },
+  { id: 9, label: 'スライディングスケール', subtitle: 'ISF25/50 自動生成', component: <Section8_SlidingScale /> },
+  { id: 10, label: '周術期血糖管理', subtitle: '休薬・再開スケジュール', component: <Section9_Perioperative /> },
+  { id: 11, label: '食事・カロリー計算', subtitle: '必要エネルギー & 蛋白制限', component: <Section10_DietCalc /> },
+  { id: 12, label: '糖尿病合併症', subtitle: '網膜症・腎症・神経障害', component: <Section11_Complications /> },
+  { id: 13, label: '認知機能チェック', subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定', component: <Section12_CognitiveCheck /> },
 ];
 
 export default function LovableHome() {
