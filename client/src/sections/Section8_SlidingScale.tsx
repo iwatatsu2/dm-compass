@@ -14,6 +14,10 @@ interface ScaleRow {
 function generateScale(isf: ISFType, start: StartType): ScaleRow[] {
   const rows: ScaleRow[] = [];
 
+  // ISF25の場合は50mg/dl刻みで2単位ずつ、ISF50の場合は25mg/dl刻みで1単位ずつ
+  const step = isf === 25 ? 50 : 25;
+  const unitStep = isf === 25 ? 2 : 1;
+
   // 開始前は0単位
   if (start === 151) {
     rows.push({ range: '〜150', units: 0 });
@@ -28,15 +32,14 @@ function generateScale(isf: ISFType, start: StartType): ScaleRow[] {
 
   // 開始から補正
   const startVal = start;
-  const step = isf;
   let current = startVal;
-  let units = 1;
+  let units = unitStep;
 
   while (units <= 8) {
     const next = current + step - 1;
     rows.push({ range: `${current}〜${next}`, units });
     current += step;
-    units++;
+    units += unitStep;
   }
   rows.push({ range: `${current}〜`, units: 8 });
 

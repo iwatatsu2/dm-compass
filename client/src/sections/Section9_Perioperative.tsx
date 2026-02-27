@@ -4,7 +4,7 @@ import { AlertBox } from '@/components/AlertBox';
 
 const drugWithdrawal = [
   { drug: 'メトホルミン', class: 'ビグアナイド', withdrawal: '前日〜当日朝から休薬', reason: '乳酸アシドーシスリスク（造影剤・術後腎機能低下）', restart: '食事・水分摂取再開後、腎機能確認後' },
-  { drug: 'SGLT2阻害薬', class: 'SGLT2阻害薬', withdrawal: '手術3日前から必ず休薬', reason: 'euDKAリスク（血糖正常でもケトアシドーシス）', restart: '食事再開後3日以上経過してから', urgent: true },
+  { drug: 'SGLT2阻害薬', class: 'SGLT2阻害薬', withdrawal: '手術3日前から必ず休薬', reason: 'euDKAリスク（血糖正常でもケトアシドーシス）', restart: '十分な経口摂取が安定し、脱水やケトーシスのリスクが低いことを確認してから再開', urgent: true },
   { drug: 'SU薬', class: 'SU薬', withdrawal: '当日朝から休薬', reason: '術中低血糖リスク', restart: '食事再開後' },
   { drug: 'グリニド薬', class: 'グリニド', withdrawal: '当日から休薬', reason: '術中低血糖リスク', restart: '食事再開後' },
   { drug: 'DPP-4阻害薬', class: 'DPP-4阻害薬', withdrawal: '当日朝から休薬', reason: '食事摂取不可時は不要', restart: '食事再開後' },
@@ -118,7 +118,7 @@ export function Section9_Perioperative() {
             </div>
             <div className="bg-red-950/20 border border-red-700/50 rounded p-3 col-span-2">
               <p className="font-semibold text-red-400 text-xs mb-1">SGLT2阻害薬（特別注意）</p>
-              <p className="text-xs">食事再開後3日以上経過し、euDKAリスクがないことを確認してから再開</p>
+              <p className="text-xs">十分な経口摂取が安定し、脱水やケトーシスのリスクが低いことを確認してから再開する</p>
             </div>
           </div>
         </div>

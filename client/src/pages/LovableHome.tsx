@@ -108,13 +108,13 @@ export default function LovableHome() {
             </button>
           </div>
 
-          {/* 検索ボックス */}
+          {/* アプリ内検索 */}
           <div className="p-3 border-b border-border">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="セクション検索..."
+              placeholder="アプリ内検索..."
               className="w-full bg-input border border-border rounded px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>

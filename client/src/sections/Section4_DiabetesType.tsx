@@ -167,18 +167,40 @@ export function Section4_DiabetesType() {
               </div>
               <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
                 <p className="font-semibold text-yellow-400 text-xs mb-2">インスリン分泌能評価</p>
-                <div className="space-y-1 text-xs">
+                <div className="space-y-2 text-xs">
                   <div className="flex justify-between">
                     <span>空腹時Cペプチド</span>
-                    <span>正常：0.5〜2.0 ng/mL</span>
+                    <span>正常：0.5～2.0 ng/mL</span>
                   </div>
                   <div className="flex justify-between">
                     <span>尿中Cペプチド（24時間）</span>
-                    <span>正常：50〜100 μg/日</span>
+                    <span>正常：50～100 μg/日</span>
+                  </div>
+                  <div className="border-t border-yellow-700/30 pt-2 mt-2">
+                    <p className="font-semibold text-yellow-300 mb-1">CPI（Cペプチドインデックス）計算</p>
+                    <p className="text-muted-foreground text-xs mb-2">CPI = 空腹時血清Cペプチド(ng/mL) × 100 ÷ 空腹時血糖(mg/dL)</p>
+                    <div className="grid grid-cols-2 gap-2 mb-2">
+                      <div>
+                        <label className="text-muted-foreground block mb-1">Cペプチド(ng/mL)</label>
+                        <input type="number" placeholder="例: 1.2" className="w-full bg-input border border-border rounded px-2 py-1 text-xs" id="cpi-cpeptide" />
+                      </div>
+                      <div>
+                        <label className="text-muted-foreground block mb-1">血糖(mg/dL)</label>
+                        <input type="number" placeholder="例: 120" className="w-full bg-input border border-border rounded px-2 py-1 text-xs" id="cpi-glucose" />
+                      </div>
+                    </div>
+                    <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white text-xs py-1 rounded transition-colors">計算</button>
+                    <div className="mt-2 p-2 bg-yellow-950/50 rounded text-xs space-y-1">
+                      <p><span className="text-yellow-300">＜0.6:</span> 重度低下 - インスリン治療必須の可能性高い</p>
+                      <p><span className="text-yellow-300">0.6～1.0:</span> 低下 - 分泌低下あり。経口薬のみでは不十分な可能性</p>
+                      <p><span className="text-yellow-300">1.0～1.5:</span> やや低下 - 進行期2型糖尿病で多い</p>
+                      <p><span className="text-yellow-300">&gt;1.5:</span> 保たれている - 分泌は比較的維持</p>
+                    </div>
                   </div>
                   <p className="text-muted-foreground mt-1">インスリン依存状態の判断に使用</p>
                 </div>
               </div>
+
             </div>
           </Card>
         </div>
