@@ -1,18 +1,19 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Section1_HyperglycemicEmergency } from '@/sections/Section1_HyperglycemicEmergency';
 import { Section2_Ketometer } from '@/sections/Section2_Ketometer';
 import { Section3_SugarIV } from '@/sections/Section3_SugarIV';
 import { Section4_DiabetesType } from '@/sections/Section4_DiabetesType';
 import { Section5_T2DAlgorithm } from '@/sections/Section5_T2DAlgorithm';
-import { Section6_OralDrugs } from '@/sections/Section6_OralDrugs';
 import { Section6_HbA1cTarget } from '@/sections/Section6_HbA1cTarget';
+import { Section6_OralDrugs } from '@/sections/Section6_OralDrugs';
 import { Section7_InsulinGuide } from '@/sections/Section7_InsulinGuide';
 import { Section8_SlidingScale } from '@/sections/Section8_SlidingScale';
 import { Section9_Perioperative } from '@/sections/Section9_Perioperative';
 import { Section10_DietCalc } from '@/sections/Section10_DietCalc';
 import { Section11_Complications } from '@/sections/Section11_Complications';
 import { Section12_CognitiveCheck } from '@/sections/Section12_CognitiveCheck';
-import { Section14_About } from '@/sections/Section14_About';
+import { Section15_Author } from '@/sections/Section15_Author';
+import { searchAppData, SearchResult } from '@/lib/appData';
 
 interface SectionDef {
   id: number;
@@ -22,19 +23,20 @@ interface SectionDef {
 }
 
 const sections: SectionDef[] = [
-  { id: 1, label: '高血糖緊急症', subtitle: 'DKA / HHS / euDKA', component: <Section1_HyperglycemicEmergency /> },
-  { id: 2, label: 'ケトメーター判定', subtitle: 'β-HB 基準値', component: <Section2_Ketometer /> },
-  { id: 3, label: '糖分入り点滴・IVH', subtitle: '商品一覧 & インスリン混注量', component: <Section3_SugarIV /> },
-  { id: 4, label: '糖尿病タイプ診断', subtitle: '診断基準（学会準拠）', component: <Section4_DiabetesType /> },
-  { id: 5, label: '2型治療アルゴリズム', subtitle: '日本糖尿病学会 2023年版', component: <Section5_T2DAlgorithm /> },
-  { id: 7, label: 'HbA1c目標値', subtitle: '個別化・高齢者対応', component: <Section6_HbA1cTarget /> },
-  { id: 8, label: '内服薬一覧', subtitle: '全クラス・腎機能調整', component: <Section6_OralDrugs /> },
-  { id: 8, label: 'インスリン完全ガイド', subtitle: '全製剤・混合製剤含む', component: <Section7_InsulinGuide /> },
-  { id: 9, label: 'スライディングスケール', subtitle: 'ISF25/50 自動生成', component: <Section8_SlidingScale /> },
-  { id: 10, label: '周術期血糖管理', subtitle: '休薬・再開スケジュール', component: <Section9_Perioperative /> },
-  { id: 11, label: '食事・カロリー計算', subtitle: '必要エネルギー & 蛋白制限', component: <Section10_DietCalc /> },
-  { id: 12, label: '糖尿病合併症', subtitle: '網膜症・腎症・神経障害', component: <Section11_Complications /> },
-  { id: 13, label: '認知機能チェック', subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定', component: <Section12_CognitiveCheck /> },
+  { id: 1,  label: '高血糖緊急症',          subtitle: 'DKA / HHS / euDKA',                       component: <Section1_HyperglycemicEmergency /> },
+  { id: 2,  label: 'ケトメーター判定',       subtitle: 'β-HB 基準値',                            component: <Section2_Ketometer /> },
+  { id: 3,  label: '糖分入り点滴・IVH',      subtitle: '商品一覧 & インスリン混注量',              component: <Section3_SugarIV /> },
+  { id: 4,  label: '糖尿病タイプ診断',       subtitle: '診断基準（学会準拠）',                     component: <Section4_DiabetesType /> },
+  { id: 5,  label: '2型治療アルゴリズム',    subtitle: '日本糖尿病学会 2023年版',                  component: <Section5_T2DAlgorithm /> },
+  { id: 6,  label: 'HbA1c目標値',           subtitle: '個別化・高齢者対応',                       component: <Section6_HbA1cTarget /> },
+  { id: 7,  label: '内服薬一覧',            subtitle: '全クラス・腎機能調整',                     component: <Section6_OralDrugs /> },
+  { id: 8,  label: 'インスリン完全ガイド',   subtitle: '全製剤・混合製剤含む',                     component: <Section7_InsulinGuide /> },
+  { id: 9,  label: 'スライディングスケール', subtitle: 'ISF25/50 自動生成',                       component: <Section8_SlidingScale /> },
+  { id: 10, label: '周術期血糖管理',         subtitle: '休薬・再開スケジュール',                   component: <Section9_Perioperative /> },
+  { id: 11, label: '食事・カロリー計算',     subtitle: '必要エネルギー & 蛋白制限',                component: <Section10_DietCalc /> },
+  { id: 12, label: '糖尿病合併症',           subtitle: '網膜症・腎症・神経障害',                   component: <Section11_Complications /> },
+  { id: 13, label: '認知機能チェック',       subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定',  component: <Section12_CognitiveCheck /> },
+  { id: 15, label: '制作者',                subtitle: 'Dr.いわたつ',                             component: <Section15_Author /> },
 ];
 
 export default function LovableHome() {
@@ -42,23 +44,35 @@ export default function LovableHome() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const filteredSections = useMemo(() => {
-    if (!searchQuery.trim()) return sections;
-    const q = searchQuery.toLowerCase();
-    return sections.filter(
-      (s) => s.label.toLowerCase().includes(q) || s.subtitle.toLowerCase().includes(q)
-    );
+  // ─── appData全体を走査するグローバル検索 ───
+  // 旧ロジック（セクション名のみfilter）は完全廃止
+  // searchAppData() が appData.ts のグローバルデータオブジェクトを走査する
+  const searchResults: SearchResult[] = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return searchAppData(searchQuery);
   }, [searchQuery]);
+
+  const isSearchMode = searchQuery.trim().length > 0;
 
   const currentSection = sections.find((s) => s.id === activeSection);
 
-  const handleSectionSelect = (id: number) => {
+  const handleSectionSelect = useCallback((id: number) => {
     setActiveSection(id);
     setSidebarOpen(false);
-  };
+    setSearchQuery('');
+  }, []);
+
+  const handleSearchResultClick = useCallback((sectionId: number) => {
+    setActiveSection(sectionId);
+    setSidebarOpen(false);
+    setSearchQuery('');
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col" style={{ maxWidth: '100vw', overflow: 'hidden' }}>
+    <div
+      className="min-h-screen bg-background text-foreground flex flex-col"
+      style={{ maxWidth: '100vw', overflow: 'hidden' }}
+    >
       {/* ヘッダー */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -111,23 +125,54 @@ export default function LovableHome() {
             </button>
           </div>
 
-          {/* アプリ内検索 */}
+          {/* ─── グローバル検索ボックス ─── */}
           <div className="p-3 border-b border-border">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="アプリ内検索..."
+              placeholder="アプリ内全体検索..."
               className="w-full bg-input border border-border rounded px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
             />
+            {isSearchMode && (
+              <p className="text-xs text-muted-foreground mt-1">
+                {searchResults.length} 件ヒット
+              </p>
+            )}
           </div>
 
-          {/* セクションリスト */}
+          {/* ─── 検索結果 or セクションリスト ─── */}
           <nav className="flex-1 overflow-y-auto py-2">
-            {filteredSections.length === 0 ? (
-              <p className="text-xs text-muted-foreground text-center py-4">見つかりません</p>
+            {isSearchMode ? (
+              /* 検索結果一覧 */
+              searchResults.length === 0 ? (
+                <p className="text-xs text-muted-foreground text-center py-6 px-3">
+                  「{searchQuery}」に一致する内容が見つかりません
+                </p>
+              ) : (
+                searchResults.map((result, idx) => (
+                  <button
+                    key={`${result.id}-${idx}`}
+                    onClick={() => handleSearchResultClick(result.sectionId)}
+                    className="w-full text-left px-3 py-3 flex flex-col gap-1 transition-colors hover:bg-border/50 border-b border-border/30"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="flex-shrink-0 w-5 h-5 rounded bg-primary/20 text-primary text-xs font-bold flex items-center justify-center">
+                        {result.sectionId}
+                      </span>
+                      <p className="text-xs font-semibold text-primary leading-tight truncate">
+                        {result.title}
+                      </p>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 ml-7">
+                      {result.snippet}
+                    </p>
+                  </button>
+                ))
+              )
             ) : (
-              filteredSections.map((section) => (
+              /* 通常のセクションリスト */
+              sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => handleSectionSelect(section.id)}
@@ -195,27 +240,27 @@ export default function LovableHome() {
             <div className="flex justify-between mt-6 pt-4 border-t border-border">
               <button
                 onClick={() => {
-                  const prev = sections.find((s) => s.id === activeSection - 1);
-                  if (prev) setActiveSection(prev.id);
+                  const idx = sections.findIndex((s) => s.id === activeSection);
+                  if (idx > 0) setActiveSection(sections[idx - 1].id);
                 }}
-                disabled={activeSection === 1}
+                disabled={sections.findIndex((s) => s.id === activeSection) === 0}
                 className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 ← 前のセクション
               </button>
               <button
                 onClick={() => {
-                  const next = sections.find((s) => s.id === activeSection + 1);
-                  if (next) setActiveSection(next.id);
+                  const idx = sections.findIndex((s) => s.id === activeSection);
+                  if (idx < sections.length - 1) setActiveSection(sections[idx + 1].id);
                 }}
-                disabled={activeSection === sections.length}
+                disabled={sections.findIndex((s) => s.id === activeSection) === sections.length - 1}
                 className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 次のセクション →
               </button>
             </div>
 
-            {/* フッター免責 */}
+            {/* フッター */}
             <div className="mt-6 pb-6 text-center space-y-2">
               <p className="text-xs text-muted-foreground">
                 本アプリは教育目的であり、最終的な治療判断は主治医の責任で行ってください。最新添付文書をご確認ください。
