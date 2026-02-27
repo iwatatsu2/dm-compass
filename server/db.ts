@@ -89,4 +89,84 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// ============================================
+// DM Compass - データベースクエリヘルパー
+// ============================================
+
+import {
+  insulinFormulations,
+  oralAntidiabeticDrugs,
+  glucoseContainingFluids,
+  ivhFormulations,
+  diabetesClassifications,
+  complications,
+  nephropathyStages,
+} from "../drizzle/schema";
+
+// インスリン製剤取得
+export async function getAllInsulinFormulations() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(insulinFormulations);
+}
+
+// 経口血糖降下薬取得
+export async function getAllOralAntidiabeticDrugs() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(oralAntidiabeticDrugs);
+}
+
+// 糖含有輸液取得
+export async function getAllGlucoseContainingFluids() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(glucoseContainingFluids);
+}
+
+// IVH製剤取得
+export async function getAllIVHFormulations() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(ivhFormulations);
+}
+
+// 糖尿病分類取得
+export async function getAllDiabetesClassifications() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(diabetesClassifications);
+}
+
+// 合併症取得
+export async function getAllComplications() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(complications);
+}
+
+// 腎症ステージ取得
+export async function getAllNephropathyStages() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(nephropathyStages).orderBy(nephropathyStages.stage);
+}
+
+// 腎症ステージをeGFRで検索
+export async function getNephropathyStageByEGFR(egfr: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const stages = await db.select().from(nephropathyStages).orderBy(nephropathyStages.stage);
+  
+  for (const stage of stages) {
+    const min = stage.eGFRMin ? parseFloat(stage.eGFRMin.toString()) : 0;
+    const max = stage.eGFRMax ? parseFloat(stage.eGFRMax.toString()) : Infinity;
+    
+    if (egfr >= min && egfr <= max) {
+      return stage;
+    }
+  }
+  
+  return null;
+}
