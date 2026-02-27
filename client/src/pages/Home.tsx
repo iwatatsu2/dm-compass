@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getLoginUrl } from "@/const";
 import { useLocation } from "wouter";
-import { Calculator, BookOpen } from "lucide-react";
+import { Calculator, BookOpen, Download } from "lucide-react";
+import { usePWA } from "@/hooks/usePWA";
 
 export default function Home() {
   const { user, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
+  const { isInstallable, installApp } = usePWA();
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -24,6 +26,17 @@ export default function Home() {
       {/* メインコンテンツ */}
       <main className="flex-1 flex flex-col justify-center items-center p-4">
         <div className="w-full max-w-md space-y-6">
+          {/* PWAインストールボタン */}
+          {isInstallable && (
+            <Button
+              onClick={installApp}
+              className="w-full bg-primary text-white hover:opacity-90 flex items-center justify-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              ホーム画面に追加
+            </Button>
+          )}
+
           {/* CALCボタン */}
           <Card className="bg-card border-border p-6 cursor-pointer hover:bg-opacity-90 transition-all"
             onClick={() => setLocation("/calc")}>

@@ -15,6 +15,13 @@
       "when": 1772156080060,
       "tag": "0001_tricky_sharon_ventura",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772157164360,
+      "tag": "0002_melted_agent_zero",
+      "breakpoints": true
     }
   ]
 }

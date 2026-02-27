@@ -1,0 +1,72 @@
+{
+  "name": "DM Compass - Diabetes Ward OS",
+  "short_name": "DM Compass",
+  "description": "初期研修医向けの糖尿病病棟管理判断支援Webアプリケーション",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23000000' width='192' height='192'/><circle cx='96' cy='96' r='70' fill='%2310b981'/><text x='96' y='110' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'>DM</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23000000' width='512' height='512'/><circle cx='256' cy='256' r='180' fill='%2310b981'/><text x='256' y='290' font-size='160' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'>DM</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "productivity"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23000000' width='540' height='720'/><text x='270' y='100' font-size='40' font-weight='bold' fill='white' text-anchor='middle'>DM Compass</text><rect x='20' y='200' width='500' height='100' fill='%23001a4d' rx='8'/><text x='270' y='260' font-size='24' fill='%2310b981' text-anchor='middle' font-weight='bold'>CALC</text><rect x='20' y='320' width='500' height='100' fill='%23001a4d' rx='8'/><text x='270' y='380' font-size='24' fill='%233b82f6' text-anchor='middle' font-weight='bold'>GUIDE</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "CALC - 計算ツール",
+      "short_name": "CALC",
+      "description": "必要エネルギー、腎症ステージ、インスリン混注計算",
+      "url": "/calc",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23000000' width='96' height='96'/><circle cx='48' cy='48' r='35' fill='%2310b981'/><text x='48' y='58' font-size='30' font-weight='bold' fill='white' text-anchor='middle'>∑</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "GUIDE - 医学情報",
+      "short_name": "GUIDE",
+      "description": "インスリン製剤、経口薬、分類、合併症",
+      "url": "/guide",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23000000' width='96' height='96'/><circle cx='48' cy='48' r='35' fill='%233b82f6'/><text x='48' y='58' font-size='30' font-weight='bold' fill='white' text-anchor='middle'>📖</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

@@ -148,3 +148,59 @@ export const nephropathyStages = mysqlTable("nephropathy_stages", {
 
 export type NephropathyStage = typeof nephropathyStages.$inferSelect;
 export type InsertNephropathyStage = typeof nephropathyStages.$inferInsert;
+
+// ============================================
+// 相互作用テーブル
+// ============================================
+
+export const drugInteractions = mysqlTable("drug_interactions", {
+  id: int("id").autoincrement().primaryKey(),
+  drugId1: int("drug_id_1").notNull(), // 薬剤1のID（oral_antidiabetic_drugs.id）
+  drugId2: int("drug_id_2").notNull(), // 薬剤2のID
+  interactionType: varchar("interaction_type", { length: 50 }).notNull(), // 相互作用の種類
+  severity: varchar("severity", { length: 20 }).notNull(), // 重症度（軽度、中等度、重度）
+  description: text("description"), // 相互作用の説明
+  management: text("management"), // 対応方法
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type DrugInteraction = typeof drugInteractions.$inferSelect;
+export type InsertDrugInteraction = typeof drugInteractions.$inferInsert;
+
+// ============================================
+// 副作用テーブル
+// ============================================
+
+export const adverseEffects = mysqlTable("adverse_effects", {
+  id: int("id").autoincrement().primaryKey(),
+  drugId: int("drug_id").notNull(), // 薬剤ID（oral_antidiabetic_drugs.id）
+  effectName: varchar("effect_name", { length: 100 }).notNull(), // 副作用名
+  incidence: varchar("incidence", { length: 50 }), // 発生頻度
+  severity: varchar("severity", { length: 20 }).notNull(), // 重症度
+  description: text("description"), // 説明
+  management: text("management"), // 対応方法
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AdverseEffect = typeof adverseEffects.$inferSelect;
+export type InsertAdverseEffect = typeof adverseEffects.$inferInsert;
+
+// ============================================
+// 用量調整ガイドテーブル
+// ============================================
+
+export const dosageAdjustmentGuides = mysqlTable("dosage_adjustment_guides", {
+  id: int("id").autoincrement().primaryKey(),
+  drugId: int("drug_id").notNull(), // 薬剤ID
+  conditionType: varchar("condition_type", { length: 50 }).notNull(), // 調整条件（腎機能、肝機能、高齢者など）
+  condition: varchar("condition", { length: 100 }).notNull(), // 具体的な条件
+  adjustedDosage: text("adjusted_dosage"), // 調整後の用量
+  notes: text("notes"), // 注記
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type DosageAdjustmentGuide = typeof dosageAdjustmentGuides.$inferSelect;
+export type InsertDosageAdjustmentGuide = typeof dosageAdjustmentGuides.$inferInsert;

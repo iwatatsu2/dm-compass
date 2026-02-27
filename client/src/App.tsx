@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import CalcPage from "./pages/CalcPage";
 import GuidePage from "./pages/GuidePage";
+import GuidePageEnhanced from "./pages/GuidePageEnhanced";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -14,7 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/calc" component={CalcPage} />
-      <Route path="/guide" component={GuidePage} />
+      <Route path="/guide" component={GuidePageEnhanced} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
