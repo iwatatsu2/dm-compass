@@ -5,20 +5,15 @@ import { Card } from '@/components/ui/card';
 // 末梢輸液商品データ
 const peripheralIVs = [
   { name: 'ブドウ糖液 5%', maker: '各社', volume: 500, glucosePercent: 5, glucoseG: 25 },
-  { name: 'ブドウ糖液 5%', maker: '各社', volume: 250, glucosePercent: 5, glucoseG: 12.5 },
   { name: 'ブドウ糖液 10%', maker: '各社', volume: 500, glucosePercent: 10, glucoseG: 50 },
-  { name: 'ブドウ糖液 10%', maker: '各社', volume: 250, glucosePercent: 10, glucoseG: 25 },
   { name: 'ソルデム3A', maker: 'テルモ', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
-  { name: 'ソルデム3A', maker: 'テルモ', volume: 250, glucosePercent: 4.3, glucoseG: 10.75 },
   { name: 'ソルデム3AG', maker: 'テルモ', volume: 500, glucosePercent: 7.5, glucoseG: 37.5 },
   { name: 'ビーフリード', maker: '大塚製薬', volume: 500, glucosePercent: 7.5, glucoseG: 37.5 },
-  { name: 'ビーフリード', maker: '大塚製薬', volume: 250, glucosePercent: 7.5, glucoseG: 18.75 },
   { name: 'フィジオゾール3号', maker: '大塚製薬', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
-  { name: 'ヴィーンF', maker: '興和', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
-  { name: 'ヴィーンD', maker: '興和', volume: 500, glucosePercent: 2.6, glucoseG: 13 },
+  { name: 'ヴィーンF', maker: '興和', volume: 500, glucosePercent: 0, glucoseG: 0 },
+  { name: 'ヴィーンD', maker: '興和', volume: 500, glucosePercent: 5, glucoseG: 25 },
   { name: 'ラクテック注', maker: '大塚製薬', volume: 500, glucosePercent: 0, glucoseG: 0 },
-  { name: 'ソリタT3号G', maker: 'テルモ', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
-  { name: 'ソリタT3号G', maker: 'テルモ', volume: 250, glucosePercent: 4.3, glucoseG: 10.75 },
+  { name: 'ソリタT3号G', maker: 'テルモ', volume: 500, glucosePercent: 7.5, glucoseG: 37.5 },
   { name: 'KN3号', maker: '大塚製薬', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
 ];
 
