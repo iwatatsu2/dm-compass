@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router, Switch } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -9,20 +9,6 @@ import Home from "./pages/Home";
 import CalcPage from "./pages/CalcPage";
 import GuidePageEnhanced from "./pages/GuidePageEnhanced";
 import LovableHome from "./pages/LovableHome";
-
-function Router() {
-  return (
-    <Switch hook={useHashLocation}>
-      <Route path="/" component={LovableHome} />
-      <Route path="/calc" component={CalcPage} />
-      <Route path="/guide" component={GuidePageEnhanced} />
-      <Route path="/classic" component={Home} />
-      <Route path="/404" component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
 
 // NOTE: About Theme
 // - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
@@ -38,7 +24,17 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <Router hook={useHashLocation}>
+            <Switch>
+              <Route path="/" component={LovableHome} />
+              <Route path="/calc" component={CalcPage} />
+              <Route path="/guide" component={GuidePageEnhanced} />
+              <Route path="/classic" component={Home} />
+              <Route path="/404" component={NotFound} />
+              {/* Final fallback route */}
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
