@@ -232,30 +232,7 @@ export function Section1_HyperglycemicEmergency() {
               </div>
             </div>
 
-            {/* インスリン流速調整 */}
-            <div>
-              <p className="text-xs font-semibold text-yellow-400 mb-2">■ インスリン流速調整</p>
-              <div className="space-y-2 text-xs">
-                <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
-                  <p className="font-semibold mb-1">【中期】1時間あたりの血糖低下量</p>
-                  <p>• 50 以上 → インスリン流量を半減（0.05 U/kg/h まで）</p>
-                  <p>• 50 未満 → そのまま継続</p>
-                </div>
-                <div className="bg-blue-950/20 border border-blue-700/50 rounded p-3">
-                  <p className="font-semibold mb-2">【安定後】血糖値に応じた皮下注スケール</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    <div className="font-semibold text-muted-foreground">BS（mg/dL）</div>
-                    <div className="font-semibold text-muted-foreground">対応</div>
-                    <div>〜100</div><div className="text-blue-400">-1.0 mL/h</div>
-                    <div>101〜150</div><div className="text-blue-400">-0.5 mL/h</div>
-                    <div>151〜200</div><div className="text-green-400">そのまま</div>
-                    <div>201〜250</div><div className="text-yellow-400">H-R 2U s.c</div>
-                    <div>251〜300</div><div className="text-orange-400">H-R 4U s.c</div>
-                    <div>301〜</div><div className="text-red-400">H-R 6U s.c</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
 
             {/* 初期治療③電解質 */}
             <div className="bg-green-950/20 border border-green-700/50 rounded-lg p-3">
