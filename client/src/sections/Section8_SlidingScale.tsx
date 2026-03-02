@@ -14,20 +14,33 @@ interface ScaleRow {
 function generateScale(isf: ISFType, start: StartType): ScaleRow[] {
   const rows: ScaleRow[] = [];
 
-  // ISF25の場合は50mg/dl刻みで2単位ずつ、ISF50の場合は25mg/dl刻みで1単位ずつ
-  const step = isf === 25 ? 50 : 25;
-  const unitStep = isf === 25 ? 2 : 1;
+  // ISF25：1単位で25mg/dL下がる → 25mg/dL刻みで1単位ずつ
+  // ISF50：1単位で50mg/dL下がる → 50mg/dL刻みで1単位ずつ
+  const step = isf === 25 ? 25 : 50;
+  const unitStep = 1;
 
   // 開始前は0単位
   if (start === 151) {
     rows.push({ range: '〜150', units: 0 });
   } else if (start === 181) {
-    rows.push({ range: '〜150', units: 0 });
-    rows.push({ range: '151〜180', units: 0 });
+    if (isf === 50) {
+      // ISF50：50mg/dL刻みなので 151〜200 をまとめて投与なし
+      rows.push({ range: '〜150', units: 0 });
+      rows.push({ range: '151〜200', units: 0 });
+    } else {
+      rows.push({ range: '〜150', units: 0 });
+      rows.push({ range: '151〜180', units: 0 });
+    }
   } else {
-    rows.push({ range: '〜150', units: 0 });
-    rows.push({ range: '151〜180', units: 0 });
-    rows.push({ range: '181〜200', units: 0 });
+    if (isf === 50) {
+      // ISF50：50mg/dL刻みなので 〜150, 151〜200 の2行
+      rows.push({ range: '〜150', units: 0 });
+      rows.push({ range: '151〜200', units: 0 });
+    } else {
+      rows.push({ range: '〜150', units: 0 });
+      rows.push({ range: '151〜180', units: 0 });
+      rows.push({ range: '181〜200', units: 0 });
+    }
   }
 
   // 開始から補正
