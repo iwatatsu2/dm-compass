@@ -36,7 +36,7 @@ const sections: SectionDef[] = [
   { id: 11, label: '食事・カロリー計算',     subtitle: '必要エネルギー & 蛋白制限',                component: <Section10_DietCalc /> },
   { id: 12, label: '糖尿病合併症',           subtitle: '網膜症・腎症・神経障害',                   component: <Section11_Complications /> },
   { id: 13, label: '認知機能チェック',       subtitle: 'HDS-R / MMSE 連動・高齢者HbA1c目標設定',  component: <Section12_CognitiveCheck /> },
-  { id: 15, label: '制作者',                subtitle: 'Dr.いわたつ',                             component: <Section15_Author /> },
+  { id: 14, label: '制作者',                subtitle: 'Dr.いわたつ',                             component: <Section15_Author /> },
 ];
 
 export default function LovableHome() {
