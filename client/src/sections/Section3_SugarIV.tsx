@@ -17,25 +17,45 @@ const peripheralIVs = [
   { name: 'KN3号', maker: '大塚製薬', volume: 500, glucosePercent: 4.3, glucoseG: 21.5 },
 ];
 
-// IVH商品データ
+// IVH商品データ（PDNレクチャー 2.8 TPN基本液とキット製剤の種類と特徴 参照・2024年6月改訂版）
 const ivhProducts = [
-  { name: 'エルネオパNF1号', maker: '大塚製薬', volume: 1000, glucoseG: 150, kcal: 820 },
-  { name: 'エルネオパNF2号', maker: '大塚製薬', volume: 1000, glucoseG: 175, kcal: 1000 },
-  { name: 'エルネオパNF1号', maker: '大塚製薬', volume: 500, glucoseG: 75, kcal: 410 },
-  { name: 'エルネオパNF2号', maker: '大塚製薬', volume: 500, glucoseG: 87.5, kcal: 500 },
-  { name: 'フルカリック1号', maker: 'テルモ', volume: 903, glucoseG: 120, kcal: 700 },
-  { name: 'フルカリック2号', maker: 'テルモ', volume: 1003, glucoseG: 175, kcal: 1000 },
-  { name: 'フルカリック3号', maker: 'テルモ', volume: 1103, glucoseG: 225, kcal: 1200 },
-  { name: 'ネオパレン1号', maker: '大塚製薬', volume: 1000, glucoseG: 150, kcal: 820 },
-  { name: 'ネオパレン2号', maker: '大塚製薬', volume: 1000, glucoseG: 175, kcal: 1000 },
-  { name: 'ピーエヌツイン1号', maker: '大塚製薬', volume: 1000, glucoseG: 125, kcal: 560 },
-  { name: 'ピーエヌツイン2号', maker: '大塚製薬', volume: 1000, glucoseG: 175, kcal: 820 },
-  { name: 'ピーエヌツイン3号', maker: '大塚製薬', volume: 1000, glucoseG: 225, kcal: 1060 },
-  { name: 'ミキシッドL', maker: 'バクスター', volume: 1000, glucoseG: 150, kcal: 750 },
-  { name: 'ミキシッドH', maker: 'バクスター', volume: 1000, glucoseG: 200, kcal: 1000 },
-  { name: 'ハイカリックRF', maker: 'テルモ', volume: 500, glucoseG: 175, kcal: 700 },
-  { name: 'ハイカリックNC-L', maker: 'テルモ', volume: 700, glucoseG: 150, kcal: 700 },
-  { name: 'ハイカリックNC-H', maker: 'テルモ', volume: 700, glucoseG: 200, kcal: 900 },
+  // 電解質＋糖質＋アミノ酸＋ビタミン剤＋微量元素
+  { name: 'エルネオパNF1号', maker: '大塚製薬', volume: 1000, glucoseG: 120, kcal: 560 },
+  { name: 'エルネオパNF1号', maker: '大塚製薬', volume: 1500, glucoseG: 180, kcal: 840 },
+  { name: 'エルネオパNF1号', maker: '大塚製薬', volume: 2000, glucoseG: 240, kcal: 1120 },
+  { name: 'エルネオパNF2号', maker: '大塚製薬', volume: 1000, glucoseG: 175, kcal: 820 },
+  { name: 'エルネオパNF2号', maker: '大塚製薬', volume: 1500, glucoseG: 262.5, kcal: 1230 },
+  { name: 'エルネオパNF2号', maker: '大塚製薬', volume: 2000, glucoseG: 350, kcal: 1640 },
+  { name: 'ワンパル1号', maker: 'エイワイファーマ', volume: 800, glucoseG: 120, kcal: 560 },
+  { name: 'ワンパル1号', maker: 'エイワイファーマ', volume: 1200, glucoseG: 180, kcal: 840 },
+  { name: 'ワンパル2号', maker: 'エイワイファーマ', volume: 800, glucoseG: 180, kcal: 840 },
+  { name: 'ワンパル2号', maker: 'エイワイファーマ', volume: 1200, glucoseG: 270, kcal: 1260 },
+  // 電解質＋糖質＋アミノ酸＋ビタミン剤
+  { name: 'ネオパレン1号', maker: '大塚製薬', volume: 1000, glucoseG: 120, kcal: 560 },
+  { name: 'ネオパレン1号', maker: '大塚製薬', volume: 1500, glucoseG: 180, kcal: 840 },
+  { name: 'ネオパレン2号', maker: '大塚製薬', volume: 1000, glucoseG: 175, kcal: 820 },
+  { name: 'ネオパレン2号', maker: '大塚製薬', volume: 1500, glucoseG: 262.5, kcal: 1230 },
+  { name: 'フルカリック1号', maker: 'テルモ', volume: 903, glucoseG: 120, kcal: 560 },
+  { name: 'フルカリック1号', maker: 'テルモ', volume: 1354.5, glucoseG: 180, kcal: 840 },
+  { name: 'フルカリック2号', maker: 'テルモ', volume: 1003, glucoseG: 175, kcal: 820 },
+  { name: 'フルカリック2号', maker: 'テルモ', volume: 1504.5, glucoseG: 262.5, kcal: 1230 },
+  { name: 'フルカリック3号', maker: 'テルモ', volume: 1103, glucoseG: 250, kcal: 1160 },
+  // 電解質＋糖質＋アミノ酸
+  { name: 'ピーエヌツイン1号', maker: '陽進堂', volume: 1000, glucoseG: 120, kcal: 560 },
+  { name: 'ピーエヌツイン2号', maker: '陽進堂', volume: 1100, glucoseG: 180, kcal: 840 },
+  { name: 'ピーエヌツイン3号', maker: '陽進堂', volume: 1200, glucoseG: 250.4, kcal: 1160 },
+  // 電解質＋糖質＋アミノ酸＋脂肪
+  { name: 'ミキシッドL', maker: '大塚製薬', volume: 900, glucoseG: 110, kcal: 700 },
+  { name: 'ミキシッドH', maker: '大塚製薬', volume: 900, glucoseG: 150, kcal: 900 },
+  // TPN基本液（アミノ酸別添加）
+  { name: 'ハイカリック1号', maker: 'テルモ', volume: 700, glucoseG: 120, kcal: 480 },
+  { name: 'ハイカリック2号', maker: 'テルモ', volume: 700, glucoseG: 175, kcal: 700 },
+  { name: 'ハイカリック3号', maker: 'テルモ', volume: 700, glucoseG: 250, kcal: 1000 },
+  { name: 'ハイカリックNC-L', maker: 'テルモ', volume: 700, glucoseG: 120, kcal: 480 },
+  { name: 'ハイカリックNC-N', maker: 'テルモ', volume: 700, glucoseG: 175, kcal: 700 },
+  { name: 'ハイカリックNC-H', maker: 'テルモ', volume: 700, glucoseG: 250, kcal: 1000 },
+  { name: 'ハイカリックRF', maker: 'テルモ', volume: 250, glucoseG: 125, kcal: 500 },
+  { name: 'ハイカリックRF', maker: 'テルモ', volume: 500, glucoseG: 250, kcal: 1000 },
 ];
 
 function calcInsulinUnits(glucoseG: number, ratio: number) {
