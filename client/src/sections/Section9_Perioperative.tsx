@@ -2,22 +2,9 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { AlertBox } from '@/components/AlertBox';
 
-const drugWithdrawal = [
-  { drug: 'メトホルミン', class: 'ビグアナイド', withdrawal: '前日〜当日朝から休薬', reason: '乳酸アシドーシスリスク（造影剤・術後腎機能低下）', restart: '食事・水分摂取再開後、腎機能確認後' },
-  { drug: 'SGLT2阻害薬', class: 'SGLT2阻害薬', withdrawal: '手術3日前から必ず休薬', reason: 'euDKAリスク（血糖正常でもケトアシドーシス）', restart: '十分な経口摂取が安定し、脱水やケトーシスのリスクが低いことを確認してから再開', urgent: true },
-  { drug: 'SU薬', class: 'SU薬', withdrawal: '当日朝から休薬', reason: '術中低血糖リスク', restart: '食事再開後' },
-  { drug: 'グリニド薬', class: 'グリニド', withdrawal: '当日から休薬', reason: '術中低血糖リスク', restart: '食事再開後' },
-  { drug: 'DPP-4阻害薬', class: 'DPP-4阻害薬', withdrawal: '当日朝から休薬', reason: '食事摂取不可時は不要', restart: '食事再開後' },
-  { drug: 'GLP-1受容体作動薬（注射）', class: 'GLP-1', withdrawal: '前日から休薬', reason: '消化管運動抑制・誤嚥リスク', restart: '食事再開後' },
-  { drug: 'セマグルチド（経口）', class: 'GLP-1（経口）', withdrawal: '前日から休薬', reason: '消化管運動抑制・誤嚥リスク', restart: '食事再開後' },
-  { drug: 'α-GI', class: 'α-GI', withdrawal: '当日から休薬', reason: '食事摂取不可時は不要', restart: '食事再開後' },
-  { drug: 'チアゾリジン', class: 'チアゾリジン', withdrawal: '当日朝から休薬', reason: '浮腫・心不全リスク', restart: '食事再開後' },
-  { drug: 'インスリン（基礎）', class: 'インスリン', withdrawal: '通常通り投与', reason: '基礎インスリンは継続が原則', restart: '継続' },
-];
-
 export function Section9_Perioperative() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <AlertBox type="danger" title="周術期血糖管理目標">
         <div className="space-y-1 text-sm">
           <p className="font-semibold">目標血糖：140〜180 mg/dL</p>
@@ -28,47 +15,50 @@ export function Section9_Perioperative() {
         </div>
       </AlertBox>
 
-      {/* 内服薬の休薬一覧 */}
+      {/* ===== 内服薬の扱い ===== */}
       <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">内服薬の休薬・再開スケジュール</h3>
-        <div className="space-y-2">
-          {drugWithdrawal.map((d) => (
-            <div
-              key={d.drug}
-              className={`border rounded p-3 text-xs ${
-                d.urgent ? 'border-red-700 bg-red-950/20' : 'border-border/50 bg-card/30'
-              }`}
-            >
-              <div className="flex justify-between items-start mb-1">
-                <span className={`font-semibold text-sm ${d.urgent ? 'text-red-400' : 'text-foreground'}`}>
-                  {d.drug}
-                  {d.urgent && ' ⚠️'}
-                </span>
-                <span className="text-muted-foreground text-xs">{d.class}</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <p className="text-muted-foreground">休薬タイミング</p>
-                  <p className={`font-medium ${d.urgent ? 'text-red-400' : 'text-orange-400'}`}>{d.withdrawal}</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">再開目安</p>
-                  <p className="font-medium text-green-400">{d.restart}</p>
-                </div>
-              </div>
-              <p className="text-muted-foreground mt-1">{d.reason}</p>
-            </div>
-          ))}
+        <h3 className="font-semibold mb-3 text-primary text-base">内服薬の扱い（全身麻酔・手術が決まった場合）</h3>
+
+        {/* SGLT2阻害薬 */}
+        <div className="border-2 border-red-600 rounded-lg p-3 mb-3 bg-red-950/20">
+          <p className="font-bold text-red-400 text-sm mb-1">⚠️ SGLT2阻害薬</p>
+          <p className="text-xs text-white font-semibold mb-1">術前 <span className="text-red-400">3日前</span> から必ず休薬</p>
+          <p className="text-xs text-gray-300">理由：euDKA（血糖正常でもケトアシドーシス）リスク。添付文書にも明記。</p>
+          <p className="text-xs text-gray-300 mt-1">再開：十分な経口摂取が安定し、脱水・ケトーシスのリスクが低いことを確認してから</p>
+        </div>
+
+        {/* 入院時より中止 */}
+        <div className="border border-orange-600 rounded-lg p-3 mb-3 bg-orange-950/20">
+          <p className="font-bold text-orange-400 text-sm mb-2">入院時より全て中止 → インスリンへ置き換え</p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-200 mb-2">
+            <p>• メトホルミン（ビグアナイド）</p>
+            <p>• SU薬</p>
+            <p>• グリニド薬</p>
+            <p>• ピオグリタゾン（チアゾリジン）</p>
+            <p>• GLP-1受容体作動薬（注射・経口）</p>
+            <p>• α-グルコシダーゼ阻害薬（αGI）</p>
+          </div>
+          <p className="text-xs text-gray-300 leading-relaxed">
+            全身麻酔では欠食期間が長くなるため、上記は入院時より全て中止し、<br />
+            インスリンへ置き換えて血糖管理を行うのが一般的。
+          </p>
+        </div>
+
+        {/* DPP-4阻害薬 */}
+        <div className="border border-green-600 rounded-lg p-3 bg-green-950/20">
+          <p className="font-bold text-green-400 text-sm mb-1">DPP-4阻害薬</p>
+          <p className="text-xs text-gray-200">特に制限不要。</p>
+          <p className="text-xs text-gray-300 mt-1">入院と同時に中止しても、直前まで内服継続してもいずれも可。</p>
         </div>
       </Card>
 
-      {/* 点滴へのインスリン混注 */}
+      {/* ===== 術中・術後の点滴インスリン管理 ===== */}
       <Card className="bg-card border-border p-4">
         <h3 className="font-semibold mb-3 text-primary text-base">術中・術後の点滴インスリン管理</h3>
         <div className="space-y-3 text-sm">
           <div>
             <p className="font-semibold text-yellow-400 mb-2">① 食事摂取不可の場合（維持輸液）</p>
-            <ul className="space-y-1 ml-3 text-xs">
+            <ul className="space-y-1 ml-3 text-xs text-gray-300">
               <li>• ソルデム3A 500mL + ヒューマリンR 4〜5単位（5g/単位）</li>
               <li>• または KN3号 500mL + ヒューマリンR 4〜5単位</li>
               <li>• 血糖測定：4〜6時間毎</li>
@@ -77,7 +67,7 @@ export function Section9_Perioperative() {
           </div>
           <div>
             <p className="font-semibold text-yellow-400 mb-2">② 血糖コントロール不良の場合（持続インスリン）</p>
-            <ul className="space-y-1 ml-3 text-xs">
+            <ul className="space-y-1 ml-3 text-xs text-gray-300">
               <li>• 速効型インスリン（ヒューマリンR）持続静注</li>
               <li>• 初期速度：0.05〜0.1単位/kg/時</li>
               <li>• 血糖測定：1〜2時間毎</li>
@@ -85,9 +75,8 @@ export function Section9_Perioperative() {
             </ul>
           </div>
           <div>
-            <p className="font-semibold text-yellow-400 mb-2">③ スライディングスケール（術後）</p>
-            <ul className="space-y-1 ml-3 text-xs">
-              <li>• 食事再開後に使用</li>
+            <p className="font-semibold text-yellow-400 mb-2">③ スライディングスケール（術後・食事再開後）</p>
+            <ul className="space-y-1 ml-3 text-xs text-gray-300">
               <li>• 超速効型インスリン（ノボラピッド等）を食前に投与</li>
               <li>• 目標血糖：140〜180 mg/dL</li>
             </ul>
@@ -95,31 +84,21 @@ export function Section9_Perioperative() {
         </div>
       </Card>
 
-      {/* 術後インスリン再開 */}
+      {/* ===== 術後の内服薬再開 ===== */}
       <Card className="bg-card border-border p-4">
         <h3 className="font-semibold mb-3 text-primary text-base">術後の内服薬再開目安</h3>
-        <div className="space-y-2 text-sm">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-green-950/20 border border-green-700/50 rounded p-3">
-              <p className="font-semibold text-green-400 text-xs mb-1">早期再開可（食事再開後）</p>
-              <ul className="space-y-0.5 text-xs">
-                <li>• DPP-4阻害薬</li>
-                <li>• α-GI</li>
-                <li>• GLP-1受容体作動薬</li>
-              </ul>
-            </div>
-            <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
-              <p className="font-semibold text-yellow-400 text-xs mb-1">腎機能確認後</p>
-              <ul className="space-y-0.5 text-xs">
-                <li>• メトホルミン</li>
-                <li>• SU薬</li>
-                <li>• グリニド薬</li>
-              </ul>
-            </div>
-            <div className="bg-red-950/20 border border-red-700/50 rounded p-3 col-span-2">
-              <p className="font-semibold text-red-400 text-xs mb-1">SGLT2阻害薬（特別注意）</p>
-              <p className="text-xs">十分な経口摂取が安定し、脱水やケトーシスのリスクが低いことを確認してから再開する</p>
-            </div>
+        <div className="space-y-2 text-xs">
+          <div className="bg-green-950/20 border border-green-700/50 rounded p-3">
+            <p className="font-semibold text-green-400 mb-1">食事再開後に再開可</p>
+            <p className="text-gray-300">DPP-4阻害薬、αGI、GLP-1受容体作動薬、グリニド薬、SU薬</p>
+          </div>
+          <div className="bg-yellow-950/20 border border-yellow-700/50 rounded p-3">
+            <p className="font-semibold text-yellow-400 mb-1">腎機能・全身状態確認後に再開</p>
+            <p className="text-gray-300">メトホルミン（術後腎機能が安定していることを確認）、ピオグリタゾン（浮腫・心不全に注意）</p>
+          </div>
+          <div className="bg-red-950/20 border border-red-700/50 rounded p-3">
+            <p className="font-semibold text-red-400 mb-1">SGLT2阻害薬（特別注意）</p>
+            <p className="text-gray-300">十分な経口摂取が安定し、脱水やケトーシスのリスクが低いことを確認してから再開する</p>
           </div>
         </div>
       </Card>
