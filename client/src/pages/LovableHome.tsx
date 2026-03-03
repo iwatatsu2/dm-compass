@@ -268,6 +268,19 @@ export default function LovableHome() {
               <p className="text-xs text-muted-foreground/60">
                 制作：Dr.いわたつ ／ 参考：日本糖尿病学会ガイドライン・日本老年医学会ガイドライン
               </p>
+              <div className="mt-3 pt-3 border-t border-border">
+                <p className="text-xs text-muted-foreground">
+                  このツールを用いた勉強会・研修のご依頼は{' '}
+                  <a
+                    href="https://driwatatsu.readdy.co/corporate#contact-form"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                  >
+                    こちら
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </main>
