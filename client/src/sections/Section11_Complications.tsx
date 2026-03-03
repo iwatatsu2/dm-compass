@@ -99,7 +99,7 @@ export function Section11_Complications() {
 
         {/* ステージ一覧表 */}
         <div className="mt-4">
-          <p className="text-xs text-muted-foreground mb-2 font-semibold">腎症ステージ分類（尿中Alb基準，第4期はアルブミン顕性＋eGFR<30）</p>
+          <p className="text-xs text-muted-foreground mb-2 font-semibold">腎症ステージ分類（尿中Alb基準，第4期はアルブミン顕性＋eGFR&lt;30）</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs border-collapse">
               <thead>

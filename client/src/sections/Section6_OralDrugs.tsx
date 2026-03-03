@@ -68,11 +68,11 @@ const drugClasses: DrugClassDef[] = [
     bgColor: 'bg-violet-950/10',
     drugs: [
       { generic: 'リラグルチド', brands: ['ビクトーザ'], dose: '0.3〜1.8mg 1日1回 皮下注', contraindications: ['重篤な消化器疾患', '甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<15：慎重投与' },
-      { generic: 'エキセナチド', brands: ['バイエッタ'], dose: '5〜10μg 1日2回 皮下注（食前）', contraindications: ['重篤な腎障害（eGFR<30）', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
-      { generic: 'エキセナチド（週1回）', brands: ['ビデュリオン'], dose: '2mg 週1回 皮下注', contraindications: ['重篤な腎障害（eGFR<30）'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
-      { generic: 'デュラグルチド', brands: ['トルリシティ'], dose: '0.75mg 週1回 皮下注', contraindications: ['甲状腺髄様癌の既往・家族歴', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
-      { generic: 'セマグルチド（注射）', brands: ['オゼンピック'], dose: '0.25〜1mg 週1回 皮下注', contraindications: ['甲状腺髄様癌の既往・家族歴', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
-      { generic: 'リキシセナチド', brands: ['リキスミア'], dose: '10〜20μg 1日1回 皮下注（朝食前）', contraindications: ['重篤な腎障害（eGFR<30）'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
+      { generic: 'エキセナチド', brands: ['バイエッタ'], dose: '5〜10μg 1日2回 皮下注（食前）', contraindications: ['重篤な腎障害（eGFR<30）', '重篤な消化器疾患', '甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
+      { generic: 'エキセナチド（週1回）', brands: ['ビデュリオン'], dose: '2mg 週1回 皮下注', contraindications: ['重篤な腎障害（eGFR<30）', '甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
+      { generic: 'デュラグルチド', brands: ['トルリシティ'], dose: '0.75mg 週1回 皮下注', contraindications: ['甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
+      { generic: 'セマグルチド（注射）', brands: ['オゼンピック'], dose: '0.25〜1mg 週1回 皮下注', contraindications: ['甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
+      { generic: 'リキシセナチド', brands: ['リキスミア'], dose: '10〜20μg 1日1回 皮下注（朝食前）', contraindications: ['重篤な腎障害（eGFR<30）', '甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: 'eGFR<30：禁忌' },
     ],
   },
   {
@@ -90,7 +90,7 @@ const drugClasses: DrugClassDef[] = [
     borderColor: 'border-purple-700/50',
     bgColor: 'bg-purple-950/10',
     drugs: [
-      { generic: 'セマグルチド（経口）', brands: ['リベルサス'], dose: '3〜14mg 分1（空腹時、水少量で服用後30分は飲食不可）', contraindications: ['重篤な消化器疾患', '甲状腺髄様癌の既往・家族歴'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
+      { generic: 'セマグルチド（経口）', brands: ['リベルサス'], dose: '3〜14mg 分1（空腹時、水少量で服用後30分は飲食不可）', contraindications: ['重篤な消化器疾患', '甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量' },
     ],
   },
   {
