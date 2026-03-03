@@ -93,7 +93,7 @@ export function Section14_About() {
           {[
             { icon: '🔍', title: '糖尿病診断基準', desc: '日本糖尿病学会準拠の診断基準' },
             { icon: '🧬', title: 'SPIDDM診断', desc: '緩徐進行1型糖尿病の診断基準' },
-            { icon: '💊', title: '内服薬一覧', desc: '全経口血糖降下薬の腎機能別投与量' },
+            { icon: '💊', title: '内服／注射一覧', desc: '全血糖降下薬（内服／注射）の腎機能別投与量' },
             { icon: '🩺', title: '血糖管理', desc: 'HbA1c目標値・個別化治療' },
             { icon: '💉', title: 'インスリン計算', desc: 'スライディングスケール・1日必要量' },
             { icon: '🏥', title: '周術期管理', desc: '手術時の血糖管理プロトコル' },

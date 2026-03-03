@@ -76,6 +76,15 @@ const drugClasses: DrugClassDef[] = [
     ],
   },
   {
+    class: 'GLP-1/GIP受容体作動薬（注射）',
+    color: 'text-fuchsia-400',
+    borderColor: 'border-fuchsia-700/50',
+    bgColor: 'bg-fuchsia-950/10',
+    drugs: [
+      { generic: 'チルゼパチド', brands: ['マンジャロ'], dose: '2.5〜15mg 週1回 皮下注（開始：2.5mg、4週毎に2.5mgずつ増量）', contraindications: ['甲状腺髄様癌の既往・家族歴', '多発性内分泌腫瘍症2型', '重篤な消化器疾患'], periop: '前日から休薬', restart: '少なくとも数日間は十分な経口摂取と全身状態の安定を確認してから再開', renalAdj: '腎機能に関わらず同量（eGFR<15：慎重投与）' },
+    ],
+  },
+  {
     class: 'GLP-1受容体作動薬（経口）',
     color: 'text-purple-400',
     borderColor: 'border-purple-700/50',

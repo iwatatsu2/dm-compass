@@ -9,20 +9,19 @@ export function Section11_Complications() {
   const calcNephropathyStage = () => {
     const egfr = parseFloat(eGFR);
     const alb = parseFloat(uAlb);
-    if (isNaN(egfr)) return null;
-
-    if (egfr >= 90) {
-      if (isNaN(alb) || alb < 30) return { stage: '第1期', label: '腎症前期', color: 'text-green-400', protein: '0.8〜1.0 g/kg' };
-      if (alb < 300) return { stage: '第2期', label: '早期腎症期', color: 'text-yellow-400', protein: '0.8〜1.0 g/kg' };
+    // eGFRは第4期の判定（<30）にのみ使用する
+    // 尿中アルブミンによるステージ分類を基本とする
+    if (isNaN(alb)) {
+      // 尿中Alb未入力の場合：eGFR<30のみ第4期と判定
+      if (!isNaN(egfr) && egfr < 30) return { stage: '第4期', label: '腎不全期', color: 'text-red-400', protein: '0.6、0.8 g/kg' };
+      return null;
     }
-    if (egfr >= 60) {
-      if (isNaN(alb) || alb < 30) return { stage: '第2期', label: '早期腎症期', color: 'text-yellow-400', protein: '0.8〜1.0 g/kg' };
-      if (alb < 300) return { stage: '第2期', label: '早期腎症期', color: 'text-yellow-400', protein: '0.8〜1.0 g/kg' };
-      return { stage: '第3期', label: '顕性腎症期', color: 'text-orange-400', protein: '0.8 g/kg' };
-    }
-    if (egfr >= 30) return { stage: '第3〜4期', label: '顕性腎症期〜腎不全期', color: 'text-orange-400', protein: '0.6〜0.8 g/kg' };
-    if (egfr >= 15) return { stage: '第4期', label: '腎不全期', color: 'text-red-400', protein: '0.6〜0.8 g/kg' };
-    return { stage: '第5期', label: '透析療法期', color: 'text-red-600', protein: '0.6 g/kg' };
+    // 尿中Albが入力されている場合
+    if (alb < 30) return { stage: '第1期', label: '腎症前期', color: 'text-green-400', protein: '0.8、1.0 g/kg' };
+    if (alb < 300) return { stage: '第2期', label: '早期腎症期', color: 'text-yellow-400', protein: '0.8、1.0 g/kg' };
+    // 尿中Alb≥300（顕性）の場合：eGFR<30で第4期、それ以外は第3期
+    if (!isNaN(egfr) && egfr < 30) return { stage: '第4期', label: '腎不全期', color: 'text-red-400', protein: '0.6、0.8 g/kg' };
+    return { stage: '第3期', label: '顕性腎症期', color: 'text-orange-400', protein: '0.8 g/kg' };
   };
 
   const nephropathyResult = calcNephropathyStage();
@@ -61,7 +60,7 @@ export function Section11_Complications() {
         <h3 className="font-semibold mb-3 text-primary text-base">糖尿病性腎症 ステージ判定</h3>
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">eGFR（mL/分/1.73m²）</label>
+            <label className="text-xs text-muted-foreground block mb-1">eGFR（mL/分/1.73m²）任意（第4期判定用）</label>
             <input
               type="number"
               value={eGFR}
@@ -100,7 +99,7 @@ export function Section11_Complications() {
 
         {/* ステージ一覧表 */}
         <div className="mt-4">
-          <p className="text-xs text-muted-foreground mb-2 font-semibold">腎症ステージ分類（尿中Alb × eGFR）</p>
+          <p className="text-xs text-muted-foreground mb-2 font-semibold">腎症ステージ分類（尿中Alb基準，第4期はアルブミン顕性＋eGFR<30）</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs border-collapse">
               <thead>
@@ -113,11 +112,11 @@ export function Section11_Complications() {
               </thead>
               <tbody>
                 {[
-                  { stage: '第1期', alb: '<30（正常）', egfr: '≥90', label: '腎症前期', color: 'text-green-400' },
-                  { stage: '第2期', alb: '30〜299（微量）', egfr: '≥60', label: '早期腎症期', color: 'text-yellow-400' },
-                  { stage: '第3期', alb: '≥300（顕性）', egfr: '30〜59', label: '顕性腎症期', color: 'text-orange-400' },
-                  { stage: '第4期', alb: '顕性', egfr: '15〜29', label: '腎不全期', color: 'text-red-400' },
-                  { stage: '第5期', alb: '顕性〜透析', egfr: '<15', label: '透析療法期', color: 'text-red-600' },
+                  { stage: '第1期', alb: '<30（正常）', egfr: '—', label: '腎症前期', color: 'text-green-400' },
+                  { stage: '第2期', alb: '30〜299（微量）', egfr: '—', label: '早期腎症期', color: 'text-yellow-400' },
+                  { stage: '第3期', alb: '≥300（顕性）', egfr: '—', label: '顕性腎症期', color: 'text-orange-400' },
+                  { stage: '第4期', alb: '顕性', egfr: '<30', label: '腎不全期', color: 'text-red-400' },
+                  { stage: '第5期', alb: '顕性〜透析', egfr: '—', label: '透析療法期', color: 'text-red-600' },
                 ].map((row) => (
                   <tr key={row.stage} className="border-b border-border/30">
                     <td className={`py-1.5 pr-2 font-semibold ${row.color}`}>{row.stage}</td>

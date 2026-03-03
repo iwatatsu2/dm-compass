@@ -29,7 +29,7 @@ const sections: SectionDef[] = [
   { id: 4,  label: '糖尿病タイプ診断',       subtitle: '診断基準（学会準拠）',                     component: <Section4_DiabetesType /> },
   { id: 5,  label: '2型治療アルゴリズム',    subtitle: '日本糖尿病学会 2023年版',                  component: <Section5_T2DAlgorithm /> },
   { id: 6,  label: 'HbA1c目標値',           subtitle: '個別化・高齢者対応',                       component: <Section6_HbA1cTarget /> },
-  { id: 7,  label: '内服薬一覧',            subtitle: '全クラス・腎機能調整',                     component: <Section6_OralDrugs /> },
+  { id: 7,  label: '内服／注射一覧',          subtitle: '全クラス・腎機能調整',                     component: <Section6_OralDrugs /> },
   { id: 8,  label: 'インスリン完全ガイド',   subtitle: '全製剤・混合製剤含む',                     component: <Section7_InsulinGuide /> },
   { id: 9,  label: 'スライディングスケール', subtitle: 'ISF25/50 自動生成',                       component: <Section8_SlidingScale /> },
   { id: 10, label: '周術期血糖管理',         subtitle: '休薬・再開スケジュール',                   component: <Section9_Perioperative /> },
