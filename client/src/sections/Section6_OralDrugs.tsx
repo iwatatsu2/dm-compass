@@ -27,7 +27,7 @@ const drugClasses: DrugClassDef[] = [
     borderColor: 'border-green-700/50',
     bgColor: 'bg-green-950/10',
     drugs: [
-      { generic: 'メトホルミン', brands: ['メトグルコ', 'グリコラン', 'ジベトス'], dose: '500〜2250mg 分2〜3（食直後）', contraindications: ['eGFR<30（禁忌）', '造影剤使用前後48h休薬', '重篤な肝障害', '心不全', '過度のアルコール摂取'], periop: '当日朝から休薬', restart: '食事再開後（腎機能確認後）', renalAdj: 'eGFR 30〜45：最大750mg/日・慎重投与、eGFR<30：禁忌' },
+      { generic: 'メトホルミン', brands: ['メトグルコ', 'グリコラン', 'ジベトス'], dose: '500〜2250mg 分2〜3（食直後）', contraindications: ['eGFR<30（禁忌）', '造影剤使用前後48h休薬', '重篤な肝障害', '心不全', '過度のアルコール摂取'], periop: '当日朝から休薬', restart: '食事再開後（腎機能確認後）', renalAdj: 'eGFR≥60：通常用量（最大2250mg）、eGFR 45〜60：最大1500mg/日、eGFR 30〜45：最大750mg/日・慎重投与、eGFR<30：禁忌' },
     ],
   },
   {
