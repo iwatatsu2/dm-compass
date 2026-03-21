@@ -132,7 +132,7 @@ const drugClasses: DrugClassDef[] = [
     borderColor: 'border-teal-700/50',
     bgColor: 'bg-teal-950/10',
     drugs: [
-      { generic: 'ピオグリタゾン', brands: ['アクトス'], dose: '15〜45mg 分1（朝食前後）', contraindications: ['心不全', '浮腫', '膀胱癌の既往', '肝障害', '骨粗鬆症（女性）'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR≥60：15〜45mg（浮腫注意）、eGFR<60：慎重投与、透析：禁忌' },
+      { generic: 'ピオグリタゾン', brands: ['アクトス'], dose: '開始：15mg 分1（朝）→ 効果不十分で30mg → 最大45mg 分1（朝）', contraindications: ['心不全', '浮腫', '膀胱癌の既往', '肝障害', '骨粗鬆症（女性）'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR≥60：15〜45mg（浮腫注意）、eGFR<60：慎重投与、透析：禁忌' },
     ],
   },
   {
