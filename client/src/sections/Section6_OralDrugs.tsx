@@ -141,7 +141,7 @@ const drugClasses: DrugClassDef[] = [
     borderColor: 'border-emerald-700/50',
     bgColor: 'bg-emerald-950/10',
     drugs: [
-      { generic: 'イメグリミン', brands: ['ツイミーグ'], dose: '1000mg 分2（朝夕食前後）', contraindications: ['重篤な腎障害（eGFR<15：禁忌）', '重篤な肝障害'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR 30〜45：慎重投与、eGFR 15〜30：500mg 分2、eGFR<15：禁忌' },
+      { generic: 'イメグリミン', brands: ['ツイミーグ'], dose: '1000mg 分2（朝夕食前後）', contraindications: ['重篤な腎障害（eGFR<10：禁忌）', '重篤な肝障害'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR 30〜45：慎重投与、eGFR 10〜30：500mg 分2、eGFR<10：禁忌' },
     ],
   },
 ];
