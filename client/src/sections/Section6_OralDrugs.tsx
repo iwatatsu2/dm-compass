@@ -163,24 +163,32 @@ function DrugItem({ drug }: { drug: DrugDef }) {
       </button>
       {open && (
         <div className="px-3 pb-3 space-y-2">
+          {/* 用法・周術期・再開（2カラム） */}
           <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
             <div>
               <span className="text-muted-foreground">用法用量：</span>
               <span className="font-medium">{drug.dose}</span>
             </div>
             <div>
-              <span className="text-muted-foreground">腎機能調整：</span>
-              <span className="font-medium text-blue-400">{drug.renalAdj}</span>
-            </div>
-            <div>
               <span className="text-muted-foreground">周術期休薬：</span>
               <span className="font-medium text-orange-400">{drug.periop}</span>
             </div>
-            <div>
+            <div className="col-span-2">
               <span className="text-muted-foreground">再開目安：</span>
               <span className="font-medium text-green-400">{drug.restart}</span>
             </div>
           </div>
+          {/* 腎機能調整（1行ずつ表示） */}
+          <div className="bg-blue-950/20 border border-blue-800/30 rounded-lg px-2.5 py-2 space-y-1">
+            <p className="text-xs text-muted-foreground mb-1">腎機能別用量</p>
+            {drug.renalAdj.split('、').map((item, i) => (
+              <div key={i} className="flex items-start gap-1.5 text-xs">
+                <span className="text-blue-400 mt-0.5 shrink-0">›</span>
+                <span className="text-blue-300 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          {/* 禁忌・注意 */}
           {drug.contraindications.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {drug.contraindications.map((c, i) => (
