@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { AlertBox } from '@/components/AlertBox';
+import { ChevronDown } from 'lucide-react';
 
 type DrugDef = {
   generic: string;
@@ -141,10 +142,57 @@ const drugClasses: DrugClassDef[] = [
     borderColor: 'border-emerald-700/50',
     bgColor: 'bg-emerald-950/10',
     drugs: [
-      { generic: 'イメグリミン', brands: ['ツイミーグ'], dose: '1000mg 分2（朝夕食前後）', contraindications: ['重篤な腎障害（eGFR<10：禁忌）', '重篤な肝障害'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR 30〜45：慎重投与、eGFR 10〜30：500mg 分2、eGFR<10：禁忌' },
+      { generic: 'イメグリミン', brands: ['ツイミーグ'], dose: '1000mg 分2（朝夕食前後）', contraindications: ['重篤な腎障害（eGFR<10：禁忌）', '重篤な肝障害'], periop: '当日朝から休薬', restart: '食事再開後', renalAdj: 'eGFR≥45：通常用量（1000mg×2回）、eGFR 15〜<45：500mg×2回（減量）、eGFR 10〜<15：500mg×1回（有益性がリスクを上回る場合のみ）、eGFR<10（透析含む）：投与非推奨' },
     ],
   },
 ];
+
+function DrugItem({ drug }: { drug: DrugDef }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        className="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-white/5 transition-colors"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <div className="flex items-baseline gap-2">
+          <span className="font-semibold text-sm text-foreground">{drug.generic}</span>
+          <span className="text-xs text-muted-foreground">{drug.brands.join(' / ')}</span>
+        </div>
+        <ChevronDown className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
+      {open && (
+        <div className="px-3 pb-3 space-y-2">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
+            <div>
+              <span className="text-muted-foreground">用法用量：</span>
+              <span className="font-medium">{drug.dose}</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground">腎機能調整：</span>
+              <span className="font-medium text-blue-400">{drug.renalAdj}</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground">周術期休薬：</span>
+              <span className="font-medium text-orange-400">{drug.periop}</span>
+            </div>
+            <div>
+              <span className="text-muted-foreground">再開目安：</span>
+              <span className="font-medium text-green-400">{drug.restart}</span>
+            </div>
+          </div>
+          {drug.contraindications.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {drug.contraindications.map((c, i) => (
+                <span key={i} className="text-xs text-red-400 bg-red-950/20 border border-red-800/40 rounded px-1.5 py-0.5">⚠ {c}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Section6_OralDrugs() {
   return (
@@ -180,46 +228,16 @@ export function Section6_OralDrugs() {
         </a>
       </div>
 
-      {/* 薬剤一覧（折りたたみなし・常時表示） */}
+      {/* 薬剤一覧（タップで開閉） */}
       {drugClasses.map((dc) => (
         <Card key={dc.class} className={`border ${dc.borderColor} ${dc.bgColor} overflow-hidden`}>
-          <div className="p-3 border-b border-border/30">
-            <span className={`font-bold text-base ${dc.color}`}>{dc.class}</span>
-            <span className="text-xs text-muted-foreground ml-2">（{dc.drugs.length}薬剤）</span>
+          <div className="px-3 py-2 border-b border-border/30 flex items-center gap-2">
+            <span className={`font-bold text-sm ${dc.color}`}>{dc.class}</span>
+            <span className="text-xs text-muted-foreground">（{dc.drugs.length}薬剤）</span>
           </div>
-          <div className="divide-y divide-border/30">
+          <div className="divide-y divide-border/20">
             {dc.drugs.map((drug) => (
-              <div key={drug.generic} className="p-3">
-                <div className="flex flex-wrap items-baseline gap-x-2 mb-2">
-                  <span className="font-bold text-sm text-foreground">{drug.generic}</span>
-                  <span className="text-xs text-muted-foreground">{drug.brands.join(' / ')}</span>
-                </div>
-                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
-                  <div>
-                    <span className="text-muted-foreground">用法用量：</span>
-                    <span className="font-medium">{drug.dose}</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">腎機能調整：</span>
-                    <span className="font-medium text-blue-400">{drug.renalAdj}</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">周術期休薬：</span>
-                    <span className="font-medium text-orange-400">{drug.periop}</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">再開目安：</span>
-                    <span className="font-medium text-green-400">{drug.restart}</span>
-                  </div>
-                </div>
-                {drug.contraindications.length > 0 && (
-                  <div className="mt-1.5 flex flex-wrap gap-1">
-                    {drug.contraindications.map((c, i) => (
-                      <span key={i} className="text-xs text-red-400 bg-red-950/20 border border-red-800/40 rounded px-1.5 py-0.5">⚠ {c}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <DrugItem key={drug.generic} drug={drug} />
             ))}
           </div>
         </Card>

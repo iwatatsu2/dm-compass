@@ -1,6 +1,55 @@
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Search, X } from 'lucide-react';
+import { Search, X, QrCode } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
+const DM_URL = 'https://iwatatsu2.github.io/dm-compass/';
+const ENDO_URL = 'https://endoguide.vercel.app/endocrine';
+
+function qrSrc(url: string) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=ffffff&bgcolor=1a1a2e&data=${encodeURIComponent(url)}`;
+}
+
+function QRShareDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-border rounded-lg px-2.5 py-1.5 transition-colors">
+          <QrCode className="w-4 h-4" />
+          <span className="hidden sm:inline">共有</span>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-sm">
+        <DialogHeader>
+          <DialogTitle className="text-base">アプリを共有する</DialogTitle>
+        </DialogHeader>
+        <div className="grid grid-cols-2 gap-4 pt-2">
+          <div className="flex flex-col items-center gap-2">
+            <img src={qrSrc(DM_URL)} alt="DM Compass QR" className="w-44 h-44 rounded-lg" />
+            <div className="text-center">
+              <p className="text-sm font-bold text-primary">DM Compass</p>
+              <p className="text-xs text-muted-foreground">糖尿病病棟OS</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img src={qrSrc(ENDO_URL)} alt="Endo Compass QR" className="w-44 h-44 rounded-lg" />
+            <div className="text-center">
+              <p className="text-sm font-bold text-blue-400">Endo Compass</p>
+              <p className="text-xs text-muted-foreground">内分泌負荷試験</p>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-muted-foreground text-center pt-1">QRコードをスキャンしてアクセス</p>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 export interface Section {
   id: string;
@@ -140,9 +189,12 @@ export function LovableLayout({ sections, title, subtitle }: LovableLayoutProps)
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* ヘッダー */}
       <header className="bg-card border-b border-border p-4 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-sm text-muted-foreground">{subtitle}</p>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">{title}</h1>
+            <p className="text-sm text-muted-foreground">{subtitle}</p>
+          </div>
+          <QRShareDialog />
         </div>
       </header>
 

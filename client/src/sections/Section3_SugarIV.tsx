@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AlertBox } from '@/components/AlertBox';
 import { Card } from '@/components/ui/card';
+import { ChevronDown } from 'lucide-react';
 
 // 末梢輸液商品データ（添付資料に基づき修正）
 // グルコース量 = 糖質g/L × 容量(L)
@@ -118,6 +119,27 @@ const categoryColors: Record<string, string> = {
   '4号液（術後回復液）': 'text-red-300',
 };
 
+function AccordionCard({ title, children, note }: { title: string; children: React.ReactNode; note?: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Card className="bg-card border-border overflow-hidden">
+      <button
+        className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-white/5 transition-colors"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="font-semibold text-primary text-sm">{title}</span>
+        <ChevronDown className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
+      {open && (
+        <div className="px-4 pb-4">
+          <div className="overflow-x-auto">{children}</div>
+          {note && <p className="text-xs text-muted-foreground mt-2">{note}</p>}
+        </div>
+      )}
+    </Card>
+  );
+}
+
 export function Section3_SugarIV() {
   // カテゴリ別にグループ化
   const isotonicGroups = isotonicIVs.reduce((acc, iv) => {
@@ -133,7 +155,7 @@ export function Section3_SugarIV() {
   }, {} as Record<string, typeof hypotonicIVs>);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <AlertBox type="info" title="インスリン混注の基本原則">
         <div className="space-y-1 text-sm">
           <p>ヒューマリンR（速効型インスリン）を輸液バッグに混注</p>
@@ -145,139 +167,128 @@ export function Section3_SugarIV() {
       </AlertBox>
 
       {/* 等張液（生食・リンゲル類） */}
-      <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">等張液（生理食塩液・リンゲル液類）</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="border-b border-border text-muted-foreground">
-                <th className="text-left pb-2 pr-2">商品名</th>
-                <th className="text-left pb-2 pr-1">メーカー</th>
-                <th className="text-center pb-2 px-1">容量</th>
-                <th className="text-center pb-2 px-1">Glu(g)</th>
-                <th className="text-center pb-2 px-1 text-yellow-400">5g/単位</th>
-                <th className="text-center pb-2 px-1 text-blue-400">10g/単位</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(isotonicGroups).map(([category, items]) => (
-                <React.Fragment key={category}>
-                  <tr>
-                    <td colSpan={6} className={`pt-3 pb-1 text-xs font-bold ${categoryColors[category] || 'text-muted-foreground'}`}>
-                      ▍{category}
-                    </td>
-                  </tr>
-                  {items.map((iv, i) => (
-                    <tr key={i} className={`border-b border-border/30 ${iv.glucoseG === 0 ? 'opacity-50' : ''}`}>
-                      <td className="py-1.5 pr-2 font-medium">
-                        {iv.name}
-                        {'sugarType' in iv && iv.sugarType && (
-                          <span className="ml-1 text-muted-foreground">({iv.sugarType})</span>
-                        )}
-                      </td>
-                      <td className="py-1.5 pr-1 text-muted-foreground">{iv.maker}</td>
-                      <td className="text-center py-1.5 px-1">{iv.volume}mL</td>
-                      <td className="text-center py-1.5 px-1">{iv.glucoseG === 0 ? '—' : `${iv.glucoseG}g`}</td>
-                      <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
-                        {calcInsulinUnits(iv.glucoseG, 5)}単位
-                      </td>
-                      <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
-                        {calcInsulinUnits(iv.glucoseG, 10)}単位
-                      </td>
-                    </tr>
-                  ))}
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
-
-      {/* 低張液（1〜4号液） */}
-      <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">低張液（1〜4号液）</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="border-b border-border text-muted-foreground">
-                <th className="text-left pb-2 pr-2">商品名</th>
-                <th className="text-left pb-2 pr-1">メーカー</th>
-                <th className="text-center pb-2 px-1">容量</th>
-                <th className="text-center pb-2 px-1">Glu(g)</th>
-                <th className="text-center pb-2 px-1 text-yellow-400">5g/単位</th>
-                <th className="text-center pb-2 px-1 text-blue-400">10g/単位</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(hypotonicGroups).map(([category, items]) => (
-                <React.Fragment key={category}>
-                  <tr>
-                    <td colSpan={6} className={`pt-3 pb-1 text-xs font-bold ${categoryColors[category] || 'text-muted-foreground'}`}>
-                      ▍{category}
-                    </td>
-                  </tr>
-                  {items.map((iv, i) => (
-                    <tr key={i} className="border-b border-border/30">
-                      <td className="py-1.5 pr-2 font-medium">
-                        {iv.name}
-                        {'sugarType' in iv && iv.sugarType && (
-                          <span className="ml-1 text-muted-foreground">({iv.sugarType})</span>
-                        )}
-                      </td>
-                      <td className="py-1.5 pr-1 text-muted-foreground">{iv.maker}</td>
-                      <td className="text-center py-1.5 px-1">{iv.volume}mL</td>
-                      <td className="text-center py-1.5 px-1">{iv.glucoseG}g</td>
-                      <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
-                        {calcInsulinUnits(iv.glucoseG, 5)}単位
-                      </td>
-                      <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
-                        {calcInsulinUnits(iv.glucoseG, 10)}単位
-                      </td>
-                    </tr>
-                  ))}
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-xs text-muted-foreground mt-2">Glu(g) = 500mL容器あたりのグルコース含有量</p>
-      </Card>
-
-      {/* IVH */}
-      <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">IVH（中心静脈栄養）商品一覧とインスリン混注量</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="border-b border-border text-muted-foreground">
-                <th className="text-left pb-2 pr-2">商品名</th>
-                <th className="text-center pb-2 px-1">容量</th>
-                <th className="text-center pb-2 px-1">Glu(g)</th>
-                <th className="text-center pb-2 px-1">kcal</th>
-                <th className="text-center pb-2 px-1 text-yellow-400">10g/単位</th>
-                <th className="text-center pb-2 px-1 text-blue-400">15g/単位</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ivhProducts.map((ivh, i) => (
-                <tr key={i} className="border-b border-border/30">
-                  <td className="py-1.5 pr-2 font-medium">{ivh.name}</td>
-                  <td className="text-center py-1.5 px-1">{ivh.volume}mL</td>
-                  <td className="text-center py-1.5 px-1">{ivh.glucoseG}g</td>
-                  <td className="text-center py-1.5 px-1">{ivh.kcal}</td>
-                  <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
-                    {calcInsulinUnits(ivh.glucoseG, 10)}単位
-                  </td>
-                  <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
-                    {calcInsulinUnits(ivh.glucoseG, 15)}単位
+      <AccordionCard title="等張液（生理食塩液・リンゲル液類）">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border text-muted-foreground">
+              <th className="text-left pb-2 pr-2">商品名</th>
+              <th className="text-left pb-2 pr-1">メーカー</th>
+              <th className="text-center pb-2 px-1">容量</th>
+              <th className="text-center pb-2 px-1">Glu(g)</th>
+              <th className="text-center pb-2 px-1 text-yellow-400">5g/単位</th>
+              <th className="text-center pb-2 px-1 text-blue-400">10g/単位</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(isotonicGroups).map(([category, items]) => (
+              <React.Fragment key={category}>
+                <tr>
+                  <td colSpan={6} className={`pt-3 pb-1 text-xs font-bold ${categoryColors[category] || 'text-muted-foreground'}`}>
+                    ▍{category}
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-xs text-muted-foreground mt-2">kcal = 総カロリー（アミノ酸含む）</p>
-      </Card>
+                {items.map((iv, i) => (
+                  <tr key={i} className={`border-b border-border/30 ${iv.glucoseG === 0 ? 'opacity-50' : ''}`}>
+                    <td className="py-1.5 pr-2 font-medium">
+                      {iv.name}
+                      {'sugarType' in iv && iv.sugarType && (
+                        <span className="ml-1 text-muted-foreground">({iv.sugarType})</span>
+                      )}
+                    </td>
+                    <td className="py-1.5 pr-1 text-muted-foreground">{iv.maker}</td>
+                    <td className="text-center py-1.5 px-1">{iv.volume}mL</td>
+                    <td className="text-center py-1.5 px-1">{iv.glucoseG === 0 ? '—' : `${iv.glucoseG}g`}</td>
+                    <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
+                      {calcInsulinUnits(iv.glucoseG, 5)}単位
+                    </td>
+                    <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
+                      {calcInsulinUnits(iv.glucoseG, 10)}単位
+                    </td>
+                  </tr>
+                ))}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </AccordionCard>
+
+      {/* 低張液（1〜4号液） */}
+      <AccordionCard title="低張液（1〜4号液）" note="Glu(g) = 500mL容器あたりのグルコース含有量">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border text-muted-foreground">
+              <th className="text-left pb-2 pr-2">商品名</th>
+              <th className="text-left pb-2 pr-1">メーカー</th>
+              <th className="text-center pb-2 px-1">容量</th>
+              <th className="text-center pb-2 px-1">Glu(g)</th>
+              <th className="text-center pb-2 px-1 text-yellow-400">5g/単位</th>
+              <th className="text-center pb-2 px-1 text-blue-400">10g/単位</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(hypotonicGroups).map(([category, items]) => (
+              <React.Fragment key={category}>
+                <tr>
+                  <td colSpan={6} className={`pt-3 pb-1 text-xs font-bold ${categoryColors[category] || 'text-muted-foreground'}`}>
+                    ▍{category}
+                  </td>
+                </tr>
+                {items.map((iv, i) => (
+                  <tr key={i} className="border-b border-border/30">
+                    <td className="py-1.5 pr-2 font-medium">
+                      {iv.name}
+                      {'sugarType' in iv && iv.sugarType && (
+                        <span className="ml-1 text-muted-foreground">({iv.sugarType})</span>
+                      )}
+                    </td>
+                    <td className="py-1.5 pr-1 text-muted-foreground">{iv.maker}</td>
+                    <td className="text-center py-1.5 px-1">{iv.volume}mL</td>
+                    <td className="text-center py-1.5 px-1">{iv.glucoseG}g</td>
+                    <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
+                      {calcInsulinUnits(iv.glucoseG, 5)}単位
+                    </td>
+                    <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
+                      {calcInsulinUnits(iv.glucoseG, 10)}単位
+                    </td>
+                  </tr>
+                ))}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </AccordionCard>
+
+      {/* IVH */}
+      <AccordionCard title="IVH（中心静脈栄養）商品一覧とインスリン混注量" note="kcal = 総カロリー（アミノ酸含む）">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border text-muted-foreground">
+              <th className="text-left pb-2 pr-2">商品名</th>
+              <th className="text-center pb-2 px-1">容量</th>
+              <th className="text-center pb-2 px-1">Glu(g)</th>
+              <th className="text-center pb-2 px-1">kcal</th>
+              <th className="text-center pb-2 px-1 text-yellow-400">10g/単位</th>
+              <th className="text-center pb-2 px-1 text-blue-400">15g/単位</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ivhProducts.map((ivh, i) => (
+              <tr key={i} className="border-b border-border/30">
+                <td className="py-1.5 pr-2 font-medium">{ivh.name}</td>
+                <td className="text-center py-1.5 px-1">{ivh.volume}mL</td>
+                <td className="text-center py-1.5 px-1">{ivh.glucoseG}g</td>
+                <td className="text-center py-1.5 px-1">{ivh.kcal}</td>
+                <td className="text-center py-1.5 px-1 text-yellow-400 font-semibold">
+                  {calcInsulinUnits(ivh.glucoseG, 10)}単位
+                </td>
+                <td className="text-center py-1.5 px-1 text-blue-400 font-semibold">
+                  {calcInsulinUnits(ivh.glucoseG, 15)}単位
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </AccordionCard>
 
       <AlertBox type="warning">
         <p className="text-sm">末梢静脈では10%以上のブドウ糖液は血管炎・静脈炎のリスクがあります。高濃度は中心静脈から投与してください。</p>
