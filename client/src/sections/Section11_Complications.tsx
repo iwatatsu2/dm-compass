@@ -221,7 +221,7 @@ export function Section11_Complications() {
         <div className="space-y-2">
 
           {/* え：壊死（PAD）※デフォルトで開く */}
-          <Accordion title="壊死（PAD：末梢動脈疾患）" label="え" color="text-red-400" defaultOpen>
+          <Accordion title="壊死（PAD：末梢動脈疾患）" label="え" color="text-red-400">
             <ul className="space-y-1 text-xs ml-1">
               <li>• ABI &lt;0.9 で診断</li>
               <li>• 間欠性跛行・安静時疼痛・壊疽</li>
