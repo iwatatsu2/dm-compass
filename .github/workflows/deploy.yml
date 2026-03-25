@@ -23,6 +23,9 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
+      - name: Inject cache version into sw.js
+        run: sed -i "s/__CACHE_VERSION__/$(date +%Y%m%d%H%M%S)/g" sw.js
+
       - name: Build
         run: GITHUB_PAGES=true npx vite build
 
