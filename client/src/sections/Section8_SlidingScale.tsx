@@ -59,7 +59,7 @@ export function Section8_SlidingScale() {
     <div className="space-y-6">
       <AlertBox type="info" title="スライディングスケールの使い方">
         <div className="space-y-1 text-sm">
-          <p>超速効型インスリン（ノボラピッド、ヒューマログ等）を使用</p>
+          <p>速効型インスリン：ヒューマリンR，または超速効型インスリン：ノボラピッド（アスパルト）、ヒューマログ（リスプロ）等を使用</p>
           <p>食前・就寝前の血糖測定時に使用</p>
           <p>ISF（インスリン感受性係数）= 1単位で下がる血糖値（mg/dL）</p>
         </div>
