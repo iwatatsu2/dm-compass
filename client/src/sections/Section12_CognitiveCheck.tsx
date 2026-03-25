@@ -1,38 +1,35 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { AlertBox } from '@/components/AlertBox';
 
-// HDS-R と MMSE の質問定義
-// shared: 両方に存在する質問（片方にチェックを入れると自動で連動）
 type QuestionDef = {
   id: string;
   text: string;
   maxScore: number;
-  sharedWith?: string; // 連動先のid
   detail?: string;
 };
 
 const hdsrQuestions: QuestionDef[] = [
   { id: 'hdsr_1', text: '① お歳はいくつですか？（±2年正解）', maxScore: 1, detail: '1点' },
-  { id: 'hdsr_2', text: '② 今日は何年何月何日ですか？何曜日ですか？', maxScore: 4, detail: '年1点・月1点・日1点・曜日1点', sharedWith: 'mmse_3' },
-  { id: 'hdsr_3', text: '③ 私たちが今いるところはどこですか？', maxScore: 2, detail: '自発2点・5秒後のヒントで1点', sharedWith: 'mmse_5' },
-  { id: 'hdsr_4', text: '④ 3つの言葉を覚えてください（桜・猫・電車）', maxScore: 3, detail: '各1点', sharedWith: 'mmse_6' },
-  { id: 'hdsr_5', text: '⑤ 100から7を順番に引いてください（93・86）', maxScore: 2, detail: '各1点', sharedWith: 'mmse_7' },
+  { id: 'hdsr_2', text: '② 今日は何年何月何日ですか？何曜日ですか？', maxScore: 4, detail: '年1点・月1点・日1点・曜日1点' },
+  { id: 'hdsr_3', text: '③ 私たちが今いるところはどこですか？', maxScore: 2, detail: '自発2点・5秒後のヒントで1点' },
+  { id: 'hdsr_4', text: '④ 3つの言葉を覚えてください（桜・猫・電車）', maxScore: 3, detail: '各1点' },
+  { id: 'hdsr_5', text: '⑤ 100から7を順番に引いてください（93・86）', maxScore: 2, detail: '各1点' },
   { id: 'hdsr_6', text: '⑥ 私が今から言う数字を逆から言ってください（6-8-2、3-5-2-9）', maxScore: 2, detail: '各1点' },
-  { id: 'hdsr_7', text: '⑦ 先ほど覚えてもらった言葉をもう一度言ってください', maxScore: 6, detail: '自発2点・ヒント1点（各）', sharedWith: 'mmse_9' },
+  { id: 'hdsr_7', text: '⑦ 先ほど覚えてもらった言葉をもう一度言ってください', maxScore: 6, detail: '自発2点・ヒント1点（各）' },
   { id: 'hdsr_8', text: '⑧ これから5つの物品を見せます（後で聞きます）', maxScore: 5, detail: '各1点' },
   { id: 'hdsr_9', text: '⑨ 知っている野菜の名前をできるだけ多く言ってください', maxScore: 5, detail: '5個以上で1点ずつ加算（最大5点）' },
 ];
 
 const mmseQuestions: QuestionDef[] = [
-  { id: 'mmse_1', text: '① 今年は何年ですか？', maxScore: 1, detail: '1点', sharedWith: 'hdsr_2' },
+  { id: 'mmse_1', text: '① 今年は何年ですか？', maxScore: 1, detail: '1点' },
   { id: 'mmse_2', text: '② 今の季節は何ですか？', maxScore: 1, detail: '1点' },
-  { id: 'mmse_3', text: '③ 今日は何日ですか？何曜日ですか？何月ですか？', maxScore: 3, detail: '各1点', sharedWith: 'hdsr_2' },
+  { id: 'mmse_3', text: '③ 今日は何日ですか？何曜日ですか？何月ですか？', maxScore: 3, detail: '各1点' },
   { id: 'mmse_4', text: '④ ここは何県ですか？何市ですか？何病院ですか？何階ですか？', maxScore: 4, detail: '各1点' },
-  { id: 'mmse_5', text: '⑤ 今いる場所はどこですか？（病院・施設など）', maxScore: 1, detail: '1点', sharedWith: 'hdsr_3' },
-  { id: 'mmse_6', text: '⑥ 3つの物の名前を覚えてください（物品名を言う）', maxScore: 3, detail: '各1点', sharedWith: 'hdsr_4' },
-  { id: 'mmse_7', text: '⑦ 100から7を順番に引いてください（93・86・79・72・65）', maxScore: 5, detail: '各1点', sharedWith: 'hdsr_5' },
-  { id: 'mmse_8', text: '⑧ 先ほどの3つの物の名前を言ってください', maxScore: 3, detail: '各1点', sharedWith: 'hdsr_7' },
+  { id: 'mmse_5', text: '⑤ 今いる場所はどこですか？（病院・施設など）', maxScore: 1, detail: '1点' },
+  { id: 'mmse_6', text: '⑥ 3つの物の名前を覚えてください（物品名を言う）', maxScore: 3, detail: '各1点' },
+  { id: 'mmse_7', text: '⑦ 100から7を順番に引いてください（93・86・79・72・65）', maxScore: 5, detail: '各1点' },
+  { id: 'mmse_8', text: '⑧ 先ほどの3つの物の名前を言ってください', maxScore: 3, detail: '各1点' },
   { id: 'mmse_9', text: '⑨ 時計を見せて「これは何ですか？」「鉛筆は？」', maxScore: 2, detail: '各1点' },
   { id: 'mmse_10', text: '⑩ 「みんなで力を合わせて綱を引きます」を繰り返してください', maxScore: 1, detail: '1点' },
   { id: 'mmse_11', text: '⑪ 紙に書かれた「目を閉じてください」を読んで実行してください', maxScore: 1, detail: '1点' },
@@ -41,40 +38,17 @@ const mmseQuestions: QuestionDef[] = [
   { id: 'mmse_14', text: '⑭ 図形（五角形が重なった図）を書き写してください', maxScore: 1, detail: '1点' },
 ];
 
-// 連動マップ（id → sharedWith id）
-const sharedMap: Record<string, string> = {};
-[...hdsrQuestions, ...mmseQuestions].forEach((q) => {
-  if (q.sharedWith) {
-    sharedMap[q.id] = q.sharedWith;
-    sharedMap[q.sharedWith] = q.id;
-  }
-});
-
 export function Section12_CognitiveCheck() {
   const [hdsrScores, setHdsrScores] = useState<Record<string, number>>({});
   const [mmseScores, setMmseScores] = useState<Record<string, number>>({});
 
-  const handleScore = useCallback(
-    (type: 'hdsr' | 'mmse', id: string, value: number) => {
-      if (type === 'hdsr') {
-        setHdsrScores((prev) => ({ ...prev, [id]: value }));
-        // 連動
-        const linked = sharedMap[id];
-        if (linked && mmseQuestions.find((q) => q.id === linked)) {
-          const linkedQ = mmseQuestions.find((q) => q.id === linked)!;
-          setMmseScores((prev) => ({ ...prev, [linked]: Math.min(value, linkedQ.maxScore) }));
-        }
-      } else {
-        setMmseScores((prev) => ({ ...prev, [id]: value }));
-        const linked = sharedMap[id];
-        if (linked && hdsrQuestions.find((q) => q.id === linked)) {
-          const linkedQ = hdsrQuestions.find((q) => q.id === linked)!;
-          setHdsrScores((prev) => ({ ...prev, [linked]: Math.min(value, linkedQ.maxScore) }));
-        }
-      }
-    },
-    []
-  );
+  const handleScore = (type: 'hdsr' | 'mmse', id: string, value: number) => {
+    if (type === 'hdsr') {
+      setHdsrScores((prev) => ({ ...prev, [id]: value }));
+    } else {
+      setMmseScores((prev) => ({ ...prev, [id]: value }));
+    }
+  };
 
   const hdsrTotal = hdsrQuestions.reduce((sum, q) => sum + (hdsrScores[q.id] ?? 0), 0);
   const mmseTotal = mmseQuestions.reduce((sum, q) => sum + (mmseScores[q.id] ?? 0), 0);
@@ -112,7 +86,7 @@ export function Section12_CognitiveCheck() {
   return (
     <div className="space-y-6">
       <AlertBox type="info" title="認知機能チェックと高齢者HbA1c目標">
-        <p className="text-sm">HDS-R（長谷川式）またはMMSEを実施して合計点を入力すると、高齢者糖尿病のHbA1c目標カテゴリーが自動判定されます。共通する質問は片方に入力すると自動連動します。</p>
+        <p className="text-sm">HDS-R（長谷川式）またはMMSEを実施して合計点を入力すると、高齢者糖尿病のHbA1c目標カテゴリーが自動判定されます。</p>
       </AlertBox>
 
       {/* スコア結果サマリー */}
@@ -162,7 +136,6 @@ export function Section12_CognitiveCheck() {
                 <div className="flex-1">
                   <p className="font-medium">{q.text}</p>
                   <p className="text-muted-foreground mt-0.5">{q.detail}</p>
-                  {q.sharedWith && <p className="text-primary/70 mt-0.5">※ MMSEと連動</p>}
                 </div>
                 <span className="text-muted-foreground whitespace-nowrap">最大{q.maxScore}点</span>
               </div>
@@ -206,7 +179,6 @@ export function Section12_CognitiveCheck() {
                 <div className="flex-1">
                   <p className="font-medium">{q.text}</p>
                   <p className="text-muted-foreground mt-0.5">{q.detail}</p>
-                  {q.sharedWith && <p className="text-primary/70 mt-0.5">※ HDS-Rと連動</p>}
                 </div>
                 <span className="text-muted-foreground whitespace-nowrap">最大{q.maxScore}点</span>
               </div>
