@@ -51,11 +51,16 @@ export function Section5_T2DAlgorithm() {
             <div className="border border-blue-600 rounded bg-blue-900/30 p-2">
               <p className="font-bold text-white text-center text-xs mb-1">非肥満</p>
               <p className="text-gray-300 text-center text-xs mb-2">[インスリン分泌不全を想定]</p>
-              <p className="text-blue-300 text-xs leading-relaxed">
-                DPP-4阻害薬, ビグアナイド薬, α-グルコシダーゼ阻害薬<span className="text-gray-400">*</span>,
-                速効型インスリン分泌促進薬(グリニド薬), スルホニル尿素(SU)薬,
-                SGLT2阻害薬<span className="text-gray-400">†</span>, GLP-1受容体作動薬<span className="text-gray-400">†</span>, イメグリミン
-              </p>
+              <ol className="space-y-1 text-xs">
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">①</span><span className="text-blue-300">DPP-4阻害薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">②</span><span className="text-blue-300">ビグアナイド薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">③</span><span className="text-blue-300">α-グルコシダーゼ阻害薬<span className="text-gray-400">＊</span></span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">④</span><span className="text-blue-300">速効型インスリン分泌促進薬(グリニド薬)</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑤</span><span className="text-blue-300">スルホニル尿素(SU)薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑥</span><span className="text-blue-300">SGLT2阻害薬<span className="text-gray-400">†</span></span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑦</span><span className="text-blue-300">GLP-1受容体作動薬<span className="text-gray-400">†</span></span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑧</span><span className="text-blue-300">イメグリミン</span></li>
+              </ol>
               <p className="text-gray-400 text-xs mt-2 leading-relaxed">
                 ＊：食後高血糖改善　†：やせの患者では体重減少に注意
               </p>
@@ -68,11 +73,16 @@ export function Section5_T2DAlgorithm() {
             <div className="border border-blue-600 rounded bg-blue-900/30 p-2">
               <p className="font-bold text-white text-center text-xs mb-1">肥満</p>
               <p className="text-gray-300 text-center text-xs mb-2">[インスリン抵抗性を想定]</p>
-              <p className="text-blue-300 text-xs leading-relaxed">
-                ビグアナイド薬, SGLT2阻害薬,
-                GLP-1受容体作動薬, DPP-4阻害薬, チアゾリジン薬,
-                α-グルコシダーゼ阻害薬<span className="text-gray-400"> *</span>, イメグリミン, チルゼパチド
-              </p>
+              <ol className="space-y-1 text-xs">
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">①</span><span className="text-blue-300">ビグアナイド薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">②</span><span className="text-blue-300">SGLT2阻害薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">③</span><span className="text-blue-300">GLP-1受容体作動薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">④</span><span className="text-blue-300">DPP-4阻害薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑤</span><span className="text-blue-300">チアゾリジン薬</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑥</span><span className="text-blue-300">α-グルコシダーゼ阻害薬<span className="text-gray-400">＊</span></span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑦</span><span className="text-blue-300">イメグリミン</span></li>
+                <li className="flex gap-1"><span className="text-gray-400 shrink-0">⑧</span><span className="text-blue-300">チルゼパチド</span></li>
+              </ol>
               <p className="text-gray-400 text-xs mt-2 leading-relaxed">
                 インスリン抵抗性はBMI, 腹囲での肥満・内臓脂肪蓄積から類推するが、HOMA-IR等の指標の評価が望ましい
               </p>
