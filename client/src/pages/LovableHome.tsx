@@ -11,8 +11,8 @@ function QRShareDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-border rounded-lg px-2.5 py-1.5 transition-colors">
-          <QrCode className="w-4 h-4" />
+        <button className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary border border-border rounded-lg px-4 py-2 transition-colors">
+          <QrCode className="w-5 h-5" />
           <span>共有</span>
         </button>
       </DialogTrigger>
@@ -26,6 +26,14 @@ function QRShareDialog() {
             <div className="text-center">
               <p className="text-sm font-bold text-primary">DM Compass</p>
               <p className="text-xs text-muted-foreground">糖尿病病棟OS</p>
+              <a
+                href={DM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-1 text-xs text-blue-400 underline break-all hover:text-blue-300"
+              >
+                {DM_URL}
+              </a>
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -33,6 +41,14 @@ function QRShareDialog() {
             <div className="text-center">
               <p className="text-sm font-bold text-blue-400">Endo Compass</p>
               <p className="text-xs text-muted-foreground">内分泌負荷試験</p>
+              <a
+                href={ENDO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-1 text-xs text-blue-400 underline break-all hover:text-blue-300"
+              >
+                {ENDO_URL}
+              </a>
             </div>
           </div>
         </div>
