@@ -3,7 +3,6 @@ import { Card } from '@/components/ui/card';
 import { AlertBox } from '@/components/AlertBox';
 
 type ISFType = 25 | 50;
-type TargetType = 'strict' | 'standard' | 'loose';
 type StartType = 151 | 181 | 201;
 
 interface ScaleRow {
@@ -47,13 +46,12 @@ function generateScale(isf: ISFType, start: StartType): ScaleRow[] {
 export function Section8_SlidingScale() {
   const [isf, setIsf] = useState<ISFType>(50);
   const [start, setStart] = useState<StartType>(151);
-  const [target, setTarget] = useState<TargetType>('standard');
 
-  const targetLabels: Record<TargetType, string> = {
-    strict: '目標血糖 100〜140 mg/dL（ICU・術後）',
-    standard: '目標血糖 140〜180 mg/dL（一般病棟）',
-    loose: '目標血糖 150〜200 mg/dL（高齢者・緩和）',
-  };
+  const startOptions: { val: StartType; targetRange: string }[] = [
+    { val: 151, targetRange: '目標血糖 101〜150' },
+    { val: 181, targetRange: '目標血糖 131〜180' },
+    { val: 201, targetRange: '目標血糖 151〜200' },
+  ];
 
   const scale = generateScale(isf, start);
 
@@ -71,26 +69,6 @@ export function Section8_SlidingScale() {
       <Card className="bg-card border-border p-4">
         <h3 className="font-semibold mb-4 text-primary text-base">スケール設定</h3>
         <div className="space-y-4">
-          {/* 目標血糖 */}
-          <div>
-            <p className="text-sm text-muted-foreground mb-2">目標血糖</p>
-            <div className="grid grid-cols-1 gap-2">
-              {(Object.entries(targetLabels) as [TargetType, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setTarget(key)}
-                  className={`text-left px-3 py-2 rounded text-xs border transition-colors ${
-                    target === key
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'border-border text-foreground hover:bg-border/50'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* ISF設定 */}
           <div>
             <p className="text-sm text-muted-foreground mb-2">ISF（インスリン感受性係数）</p>
@@ -115,17 +93,18 @@ export function Section8_SlidingScale() {
           <div>
             <p className="text-sm text-muted-foreground mb-2">補正開始血糖</p>
             <div className="grid grid-cols-3 gap-2">
-              {([151, 181, 201] as StartType[]).map((val) => (
+              {startOptions.map(({ val, targetRange }) => (
                 <button
                   key={val}
                   onClick={() => setStart(val)}
-                  className={`px-3 py-2 rounded text-sm border transition-colors ${
+                  className={`px-3 py-2 rounded text-sm border transition-colors flex flex-col items-center ${
                     start === val
                       ? 'bg-primary text-primary-foreground border-primary'
                       : 'border-border text-foreground hover:bg-border/50'
                   }`}
                 >
-                  {val}〜
+                  <span>{val}〜</span>
+                  <span className="text-xs opacity-75">{targetRange}</span>
                 </button>
               ))}
             </div>
@@ -137,7 +116,7 @@ export function Section8_SlidingScale() {
       <Card className="bg-card border-border p-4">
         <h3 className="font-semibold mb-1 text-primary text-base">スライディングスケール</h3>
         <p className="text-xs text-muted-foreground mb-3">
-          {targetLabels[target]} / ISF {isf} / 補正開始 {start} mg/dL〜
+          {startOptions.find(o => o.val === start)?.targetRange} / ISF {isf} / 補正開始 {start} mg/dL〜
         </p>
         <div className="overflow-hidden rounded border border-border">
           <table className="w-full text-sm">
