@@ -19,20 +19,18 @@ function generateScale(isf: ISFType, start: StartType): ScaleRow[] {
   const step = 50;
   const unitStep = isf === 25 ? 2 : 1;
 
-  // 開始前は0単位（ISF25/50ともに50刻み）
+  // 開始前は0単位
   if (start === 151) {
     rows.push({ range: '〜150', units: 0 });
   } else if (start === 181) {
-    rows.push({ range: '〜150', units: 0 });
-    rows.push({ range: '151〜200', units: 0 });
+    rows.push({ range: '〜180', units: 0 });
   } else {
     rows.push({ range: '〜150', units: 0 });
     rows.push({ range: '151〜200', units: 0 });
   }
 
-  // 開始から補正（50刻みに合わせて開始値を調整）
-  const startVal = start === 181 ? 201 : start;
-  let current = startVal;
+  // 開始から補正
+  let current = start;
   let units = unitStep;
 
   while (units <= 8) {
