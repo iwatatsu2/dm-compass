@@ -11,7 +11,7 @@ function QRShareDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary border border-border rounded-lg px-4 py-2 transition-colors">
+        <button className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary border border-border rounded-lg px-4 py-2 transition-colors whitespace-nowrap">
           <QrCode className="w-5 h-5" />
           <span>共有</span>
         </button>
