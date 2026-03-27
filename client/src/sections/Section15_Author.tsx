@@ -8,10 +8,9 @@ export function Section15_Author() {
         {/* イラスト（中央配置・200〜250px・レスポンシブ） */}
         <div className="flex justify-center mb-5">
           <img
-            src="creator.jpg"
+            src="dr-iwatatsu.png"
             alt="Dr.いわたつ イラスト"
             style={{ width: 'clamp(200px, 40vw, 250px)', height: 'auto' }}
-            className="rounded-xl shadow-lg"
           />
         </div>
 
