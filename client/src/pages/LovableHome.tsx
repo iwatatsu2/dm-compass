@@ -10,9 +10,9 @@ function qrSrc(url: string) {
 }
 function QRShareDialog() {
   const apps = [
-    { url: DM_URL, label: 'DM Compass', sub: '糖尿病病棟OS', color: 'text-primary' },
-    { url: ENDO_URL, label: 'Endo Compass', sub: '内分泌負荷試験', color: 'text-blue-400' },
-    { url: ELEC_URL, label: 'Electrolyte Compass', sub: '電解質異常鑑別', color: 'text-cyan-400' },
+    { url: DM_URL, label: 'DM Compass', sub: '糖尿病病棟OS', color: 'text-primary', hex: '' },
+    { url: ENDO_URL, label: 'Endo Compass', sub: '内分泌負荷試験', color: 'text-blue-400', hex: '' },
+    { url: ELEC_URL, label: 'Electrolyte Compass', sub: '電解質異常鑑別', color: '', hex: '#f97316' },
   ];
   return (
     <Dialog>
@@ -31,7 +31,7 @@ function QRShareDialog() {
             <div key={app.url} className="flex flex-col items-center gap-2">
               <img src={qrSrc(app.url)} alt={app.label} className="w-full aspect-square rounded-lg" />
               <div className="text-center">
-                <p className={`text-xs font-bold ${app.color}`}>{app.label}</p>
+                <p className={`text-xs font-bold ${app.color}`} style={app.hex ? { color: app.hex } : {}}>{app.label}</p>
                 <p className="text-xs text-muted-foreground">{app.sub}</p>
                 <a href={app.url} target="_blank" rel="noopener noreferrer"
                   className="block mt-1 text-xs text-blue-400 underline break-all hover:text-blue-300">
