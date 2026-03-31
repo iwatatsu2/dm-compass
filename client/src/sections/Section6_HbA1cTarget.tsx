@@ -44,68 +44,77 @@ export function Section6_HbA1cTarget() {
 
       {/* 高齢者 */}
       <Card className="bg-card border-border p-4">
-        <h3 className="font-semibold mb-3 text-primary text-base">■ 高齢者糖尿病の血糖コントロール目標（HbA1c値）</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse">
-            <thead>
-              <tr className="bg-muted/30">
-                <th className="border border-border/50 p-2 text-left font-semibold">患者の特徴・健康状態</th>
-                <th className="border border-border/50 p-2 text-center font-semibold">
-                  カテゴリーI<br/>
-                  <span className="font-normal text-muted-foreground text-xs">認知機能正常<br/>かつADL自立</span>
-                </th>
-                <th className="border border-border/50 p-2 text-center font-semibold">
-                  カテゴリーII<br/>
-                  <span className="font-normal text-muted-foreground text-xs">軽度認知障害、<br/>手段的ADL低下</span>
-                </th>
-                <th className="border border-border/50 p-2 text-center font-semibold">
-                  カテゴリーIII<br/>
-                  <span className="font-normal text-muted-foreground text-xs">中度以上の認知症<br/>基本的ADL低下</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-border/50 p-2">
-                  <span className="font-semibold">重症低血糖が危惧される薬剤を使用しない</span><br/>
-                  <span className="text-muted-foreground text-xs">（SU薬・インスリンなし）</span>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <p className="font-bold text-green-400">7.0未満</p>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <p className="font-bold text-green-400">7.0未満</p>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <p className="font-bold text-yellow-400">8.0未満</p>
-                </td>
-              </tr>
-              <tr className="bg-muted/10">
-                <td className="border border-border/50 p-2">
-                  <span className="font-semibold">重症低血糖が危惧される薬剤を使用する</span><br/>
-                  <span className="text-muted-foreground text-xs">（SU薬・インスリンあり）</span>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <div className="space-y-1">
-                    <p className="text-yellow-400 text-xs font-semibold">65～74歳</p>
-                    <p className="font-bold text-primary">7.5未満</p>
-                    <p className="text-xs text-muted-foreground">（下限 6.5%）</p>
-                    <p className="text-yellow-400 text-xs font-semibold mt-1">75歳以上</p>
-                    <p className="font-bold text-primary">8.0未満</p>
-                    <p className="text-xs text-muted-foreground">（下限 7.0%）</p>
-                  </div>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <p className="font-bold text-orange-400">8.0未満</p>
-                  <p className="text-xs text-muted-foreground">（下限 7.0%）</p>
-                </td>
-                <td className="border border-border/50 p-2 text-center">
-                  <p className="font-bold text-red-400">8.5未満</p>
-                  <p className="text-xs text-muted-foreground">（下限 7.5%）</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <h3 className="font-semibold mb-4 text-primary text-base">■ 高齢者糖尿病の血糖コントロール目標（HbA1c値）</h3>
+
+        {/* カテゴリー説明 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4 text-xs">
+          <div className="bg-muted/20 border border-border/50 rounded p-2">
+            <p className="font-bold text-primary mb-1">カテゴリー I</p>
+            <p className="text-muted-foreground">認知機能正常かつADL自立</p>
+          </div>
+          <div className="bg-muted/20 border border-border/50 rounded p-2">
+            <p className="font-bold text-primary mb-1">カテゴリー II</p>
+            <p className="text-muted-foreground">軽度認知障害、または手段的ADL低下</p>
+          </div>
+          <div className="bg-muted/20 border border-border/50 rounded p-2">
+            <p className="font-bold text-primary mb-1">カテゴリー III</p>
+            <p className="text-muted-foreground">中度以上の認知症、または基本的ADL低下</p>
+          </div>
+        </div>
+
+        {/* 低血糖リスク薬剤なし */}
+        <div className="mb-3">
+          <div className="bg-blue-950/20 border border-blue-700/50 rounded-t px-3 py-2">
+            <p className="text-xs font-semibold text-blue-300">重症低血糖が危惧される薬剤を<span className="underline">使用しない</span>場合（SU薬・インスリンなし）</p>
+          </div>
+          <div className="grid grid-cols-3 border border-t-0 border-border/50 rounded-b divide-x divide-border/50 text-xs">
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー I</p>
+              <p className="font-bold text-green-400 text-base">7.0未満</p>
+            </div>
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー II</p>
+              <p className="font-bold text-green-400 text-base">7.0未満</p>
+            </div>
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー III</p>
+              <p className="font-bold text-yellow-400 text-base">8.0未満</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 低血糖リスク薬剤あり */}
+        <div>
+          <div className="bg-orange-950/20 border border-orange-700/50 rounded-t px-3 py-2">
+            <p className="text-xs font-semibold text-orange-300">重症低血糖が危惧される薬剤を<span className="underline">使用する</span>場合（SU薬・インスリンあり）</p>
+          </div>
+          <div className="grid grid-cols-3 border border-t-0 border-border/50 rounded-b divide-x divide-border/50 text-xs">
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー I</p>
+              <div className="space-y-2">
+                <div>
+                  <p className="text-yellow-400 font-semibold">65〜74歳</p>
+                  <p className="font-bold text-primary text-base">7.5未満</p>
+                  <p className="text-muted-foreground">（下限 6.5%）</p>
+                </div>
+                <div className="border-t border-border/30 pt-2">
+                  <p className="text-yellow-400 font-semibold">75歳以上</p>
+                  <p className="font-bold text-primary text-base">8.0未満</p>
+                  <p className="text-muted-foreground">（下限 7.0%）</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー II</p>
+              <p className="font-bold text-orange-400 text-base">8.0未満</p>
+              <p className="text-muted-foreground">（下限 7.0%）</p>
+            </div>
+            <div className="p-3 text-center">
+              <p className="text-muted-foreground mb-1">カテゴリー III</p>
+              <p className="font-bold text-red-400 text-base">8.5未満</p>
+              <p className="text-muted-foreground">（下限 7.5%）</p>
+            </div>
+          </div>
         </div>
 
         <div className="mt-4 space-y-2 text-xs text-muted-foreground">
