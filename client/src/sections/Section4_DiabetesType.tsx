@@ -278,24 +278,103 @@ export function Section4_DiabetesType() {
       {/* ─── その他タブ ─── */}
       {activeTab === 'other' && (
         <div className="space-y-3">
+          {/* MODY 詳細セクション */}
+          <Card className="bg-card border-border p-4">
+            <h3 className="font-semibold mb-1 text-purple-400 text-sm">MODY（Maturity-Onset Diabetes of the Young）</h3>
+            <p className="text-xs text-muted-foreground mb-3">若年発症・常染色体優性遺伝・自己免疫なし・全糖尿病の1–2%</p>
+
+            {/* まとめ表 */}
+            <div className="overflow-x-auto mb-3">
+              <table className="w-full text-xs border-collapse">
+                <thead>
+                  <tr className="bg-purple-950/30">
+                    <th className="text-left p-1.5 text-purple-300 font-semibold border border-purple-700/30">型</th>
+                    <th className="text-left p-1.5 text-purple-300 font-semibold border border-purple-700/30">遺伝子</th>
+                    <th className="text-left p-1.5 text-purple-300 font-semibold border border-purple-700/30">頻度</th>
+                    <th className="text-left p-1.5 text-purple-300 font-semibold border border-purple-700/30">治療</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { type: 'MODY3', gene: 'HNF1A', freq: '30–50%', tx: 'SU有効', txColor: 'text-green-400' },
+                    { type: 'MODY2', gene: 'GCK',   freq: '20–30%', tx: '治療不要', txColor: 'text-blue-400' },
+                    { type: 'MODY1', gene: 'HNF4A', freq: '5–10%',  tx: 'SU有効', txColor: 'text-green-400' },
+                    { type: 'MODY5', gene: 'HNF1B', freq: '1–5%',   tx: 'インスリン', txColor: 'text-orange-400' },
+                    { type: 'MODY4', gene: 'PDX1',  freq: '＜1%',   tx: 'インスリン', txColor: 'text-orange-400' },
+                  ].map((row) => (
+                    <tr key={row.type} className="border-b border-purple-700/20">
+                      <td className="p-1.5 border border-purple-700/20 font-bold text-purple-300">{row.type}</td>
+                      <td className="p-1.5 border border-purple-700/20 text-yellow-300">{row.gene}</td>
+                      <td className="p-1.5 border border-purple-700/20">{row.freq}</td>
+                      <td className={`p-1.5 border border-purple-700/20 font-semibold ${row.txColor}`}>{row.tx}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* 各型の詳細 */}
+            <div className="space-y-2">
+              {[
+                {
+                  type: 'MODY3（最重要）', gene: 'HNF1A', freq: '約30–50%',
+                  features: ['思春期〜若年で発症', '腎閾値低下 → 尿糖が出やすい', '進行性高血糖'],
+                  tx: 'SU薬が非常に有効（第一選択）。インスリン不要になること多い',
+                  txColor: 'text-green-400',
+                },
+                {
+                  type: 'MODY2', gene: 'GCK', freq: '約20–30%',
+                  features: ['軽度空腹時高血糖（100–150 mg/dL程度）', '生涯ほぼ安定・合併症リスク低い', '妊娠時のみ注意'],
+                  tx: '基本的に治療不要',
+                  txColor: 'text-blue-400',
+                },
+                {
+                  type: 'MODY1', gene: 'HNF4A', freq: '約5–10%',
+                  features: ['MODY3と臨床像が類似', '新生児期に巨大児・低血糖を呈することあり'],
+                  tx: 'SU薬有効',
+                  txColor: 'text-green-400',
+                },
+                {
+                  type: 'MODY5', gene: 'HNF1B', freq: '約1–5%',
+                  features: ['腎奇形（嚢胞・形成異常）', '肝機能異常・低Mg血症'],
+                  tx: 'インスリンが必要なことが多い（SU効きにくい）',
+                  txColor: 'text-orange-400',
+                },
+              ].map((m) => (
+                <div key={m.type} className="border border-purple-700/30 rounded p-2.5 bg-purple-950/10">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="font-bold text-purple-300 text-xs">{m.type}</p>
+                    <span className="text-xs text-muted-foreground">{m.gene} / {m.freq}</span>
+                  </div>
+                  <ul className="space-y-0.5 mb-1.5">
+                    {m.features.map((f, i) => (
+                      <li key={i} className="text-xs flex gap-1.5">
+                        <span className="text-purple-400 flex-shrink-0">•</span><span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className={`text-xs font-semibold ${m.txColor}`}>▶ {m.tx}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* 疑うべきポイント */}
+            <div className="mt-3 bg-yellow-950/20 border border-yellow-700/40 rounded p-2.5">
+              <p className="text-xs font-semibold text-yellow-400 mb-1.5">MODY を疑うポイント</p>
+              <ul className="space-y-0.5 text-xs">
+                <li className="flex gap-1.5"><span className="text-yellow-400">!</span>3世代連続の糖尿病家族歴</li>
+                <li className="flex gap-1.5"><span className="text-yellow-400">!</span>25歳未満発症・非肥満・抗体陰性</li>
+                <li className="flex gap-1.5"><span className="text-yellow-400">!</span>インスリン不要で長期経過</li>
+                <li className="flex gap-1.5"><span className="text-yellow-400">!</span>「若年2型糖尿病」の誤診に注意</li>
+              </ul>
+              <p className="text-xs text-muted-foreground mt-1.5">→ Cペプチド保持・抗体陰性・若年非肥満 → 遺伝子検査を検討</p>
+            </div>
+          </Card>
+
           <Card className="bg-card border-border p-4">
             <h3 className="font-semibold mb-3 text-primary text-sm">その他の糖尿病</h3>
             <div className="space-y-3">
               {[
-                {
-                  name: 'MODY（若年発症成人型糖尿病）',
-                  color: 'text-purple-400',
-                  bg: 'bg-purple-950/10',
-                  border: 'border-purple-700/50',
-                  points: [
-                    '常染色体優性遺伝（家族歴が強い）',
-                    '25歳以下での発症が多い',
-                    '肥満なし、自己抗体陰性',
-                    'MODY2（GCK変異）：軽度の空腹時高血糖、治療不要なことも',
-                    'MODY3（HNF1α変異）：進行性、スルホニル尿素薬に感受性高い',
-                    'MODY5（HNF1β変異）：腎嚢胞を合併',
-                  ],
-                },
                 {
                   name: 'ミトコンドリア糖尿病（MIDD）',
                   color: 'text-teal-400',
