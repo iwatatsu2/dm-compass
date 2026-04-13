@@ -243,7 +243,7 @@ export function Section11_Complications() {
             <ul className="space-y-1 text-xs ml-1">
               <li>• 無症候性心筋虚血が多い</li>
               <li>• ABI測定・心電図・負荷試験</li>
-              <li>• LDL-C目標：&lt;100 mg/dL（高リスク：&lt;70）</li>
+              <li>• LDL-C目標：一次予防 &lt;120 / 二次予防 &lt;100 mg/dL（超高リスク：&lt;70）</li>
             </ul>
           </Accordion>
 
