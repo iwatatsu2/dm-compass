@@ -12,6 +12,9 @@ export function Section9_Perioperative() {
           <p>一般手術：140〜200 mg/dL</p>
           <p>血糖 &lt;140 mg/dL：低血糖リスクに注意</p>
           <p>血糖 &gt;250 mg/dL：インスリン投与を検討</p>
+          <p className="mt-2 text-xs text-gray-400">
+            参考：NICE-SUGAR Trial (NEJM 2009; 360:1283-97) / ADA Standards of Care 2024
+          </p>
         </div>
       </AlertBox>
 
