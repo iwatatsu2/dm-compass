@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Router, Switch } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
 import ErrorBoundary from "./components/ErrorBoundary";
+import InstallBanner from "./components/InstallBanner";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import CalcPage from "./pages/CalcPage";
@@ -24,6 +25,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <InstallBanner />
           <Router hook={useHashLocation}>
             <Switch>
               <Route path="/" component={LovableHome} />
