@@ -322,7 +322,7 @@ export default function LovableHome() {
                 <p className="text-xs text-muted-foreground">
                   このツールを用いた勉強会・研修のご依頼は{' '}
                   <a
-                    href="https://driwatatsu.readdy.co/corporate#contact-form"
+                    href="https://driwatatsu-hp.vercel.app/corporate#contact-form"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"

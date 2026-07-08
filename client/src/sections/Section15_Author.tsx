@@ -28,12 +28,12 @@ export function Section15_Author() {
               公式サイト（アプリ・研究・講演情報はこちら）
             </p>
             <a
-              href="https://driwatatsu.readdy.co/"
+              href="https://driwatatsu-hp.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 underline underline-offset-2 text-sm font-medium break-all transition-colors"
             >
-              https://driwatatsu.readdy.co/
+              https://driwatatsu-hp.vercel.app/
             </a>
           </div>
 
