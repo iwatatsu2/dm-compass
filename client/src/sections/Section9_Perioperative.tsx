@@ -18,6 +18,88 @@ export function Section9_Perioperative() {
         </div>
       </AlertBox>
 
+      {/* ===== 休薬カウントダウン・タイムライン（当院プロトコール） ===== */}
+      <Card className="bg-card border-border p-4">
+        <h3 className="font-semibold mb-1 text-primary text-base">休薬カウントダウン・タイムライン</h3>
+        <p className="text-xs text-gray-400 mb-4">当院ルール準拠／術前 何日前に止めるかを一目で確認</p>
+
+        <div className="relative pl-5">
+          {/* 縦のタイムライン軸 */}
+          <div className="absolute left-1.5 top-1 bottom-1 w-px bg-gray-700" />
+
+          {/* Day −7 */}
+          <div className="relative mb-4">
+            <div className="absolute -left-[15px] top-1 w-3 h-3 rounded-full bg-red-500 ring-2 ring-red-500/30" />
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-red-400 font-bold text-sm">術前 1週間前</span>
+              <span className="text-[10px] text-gray-500 font-mono">Day −7</span>
+            </div>
+            <div className="border border-red-700/50 rounded-lg p-2.5 bg-red-950/20">
+              <p className="text-xs font-semibold text-gray-100">GLP-1受容体作動薬（注射・週1製剤含む）</p>
+              <p className="text-[11px] text-gray-400 mt-0.5">胃排出遅延による誤嚥リスク回避のため休薬</p>
+            </div>
+          </div>
+
+          {/* Day −3 */}
+          <div className="relative mb-4">
+            <div className="absolute -left-[15px] top-1 w-3 h-3 rounded-full bg-orange-500 ring-2 ring-orange-500/30" />
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-orange-400 font-bold text-sm">術前 3日前</span>
+              <span className="text-[10px] text-gray-500 font-mono">Day −3</span>
+            </div>
+            <div className="border border-orange-700/50 rounded-lg p-2.5 bg-orange-950/20 space-y-1.5">
+              <div>
+                <p className="text-xs font-semibold text-gray-100">SGLT2阻害薬</p>
+                <p className="text-[11px] text-gray-400 mt-0.5">正常血糖ケトアシドーシス・脱水の回避</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-gray-100">リベルサス（経口セマグルチド）</p>
+                <p className="text-[11px] text-gray-400 mt-0.5">誤嚥リスク（経口は3日前）</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Admission */}
+          <div className="relative mb-4">
+            <div className="absolute -left-[15px] top-1 w-3 h-3 rounded-full bg-yellow-500 ring-2 ring-yellow-500/30" />
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-yellow-400 font-bold text-sm">入院時 中止</span>
+              <span className="text-[10px] text-gray-500 font-mono">Admission</span>
+            </div>
+            <div className="border border-yellow-700/50 rounded-lg p-2.5 bg-yellow-950/20">
+              <div className="grid grid-cols-1 gap-1 text-[11px] text-gray-200">
+                <p>・SU薬・グリニド薬 <span className="text-gray-500">（低血糖）</span></p>
+                <p>・ピオグリタゾン <span className="text-gray-500">（浮腫）</span></p>
+                <p>・α-GI <span className="text-gray-500">（絶食時は不要）</span></p>
+                <p>・メトホルミン <span className="text-gray-500">（乳酸アシドーシス回避）</span></p>
+              </div>
+            </div>
+          </div>
+
+          {/* Day 0 */}
+          <div className="relative">
+            <div className="absolute -left-[15px] top-1 w-3 h-3 rounded-full bg-green-500 ring-2 ring-green-500/30" />
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-green-400 font-bold text-sm">当日朝・手術</span>
+              <span className="text-[10px] text-gray-500 font-mono">Day 0（執刀）</span>
+            </div>
+            <div className="border border-green-700/50 rounded-lg p-2.5 bg-green-950/20">
+              <p className="text-xs font-semibold text-gray-100">DPP-4阻害薬</p>
+              <p className="text-[11px] text-gray-400 mt-0.5">原則継続可だが当日朝は休薬</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 術後再開の目安 */}
+        <div className="mt-4 pt-3 border-t border-gray-700">
+          <p className="text-xs font-semibold text-green-400 mb-1.5">✓ 術後再開の目安（Resumption Rules）</p>
+          <ul className="text-[11px] text-gray-300 space-y-1">
+            <li>・SGLT2 / GLP-1：十分な経口摂取と全身状態の安定後に再開</li>
+            <li className="text-yellow-300">・α-GI：腹部オペ後はイレウスリスクのため再開しない</li>
+          </ul>
+        </div>
+      </Card>
+
       {/* ===== 内服薬の扱い ===== */}
       <Card className="bg-card border-border p-4">
         <h3 className="font-semibold mb-3 text-primary text-base">内服薬の扱い（全身麻酔・手術が決まった場合）</h3>
