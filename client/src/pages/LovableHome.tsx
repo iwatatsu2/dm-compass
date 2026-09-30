@@ -286,6 +286,24 @@ export default function LovableHome() {
             {/* セクションコンテンツ */}
             {currentSection?.component}
 
+            {/* DM Compass Training への導線（調べる→判断を練習する） */}
+            <a
+              href="https://dm-compass-training.vercel.app/?utm_source=dm-compass&utm_medium=app&utm_campaign=section-banner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 block rounded-lg border border-primary/40 bg-primary/10 p-4 transition-colors hover:bg-primary/15"
+            >
+              <p className="text-xs font-bold tracking-widest text-primary">
+                DM COMPASS TRAINING
+              </p>
+              <p className="mt-1 text-sm font-bold text-foreground">
+                調べたら、次は「判断」を練習する。
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                実際の患者を初診から治療調整まで疑似診療する症例トレーニング。あなたの選択で経過が変わります。無料症例あり →
+              </p>
+            </a>
+
             {/* 前後ナビゲーション */}
             <div className="flex justify-between mt-6 pt-4 border-t border-border">
               <button
