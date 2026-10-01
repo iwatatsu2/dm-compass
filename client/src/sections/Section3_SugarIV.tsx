@@ -56,8 +56,8 @@ const hypotonicIVs = [
   { name: 'ソリタT4号輸液', maker: 'エイワイ', volume: 500, glucosePercent: 4.3, glucoseG: 21.5, category: '4号液（術後回復液）', sugarType: 'G' },
   { name: 'ソルデム6輸液', maker: 'テルモ', volume: 500, glucosePercent: 4, glucoseG: 20, category: '4号液（術後回復液）', sugarType: 'G' },
   // アミノ酸加輸液（PPN）
-  { name: 'ビーフリード輸液', maker: '大塚', volume: 500, glucosePercent: 3.5, glucoseG: 17.5, category: 'アミノ酸加輸液（PPN）', sugarType: 'G' },
-  { name: 'ビーフリード輸液', maker: '大塚', volume: 1000, glucosePercent: 3.5, glucoseG: 35, category: 'アミノ酸加輸液（PPN）', sugarType: 'G' },
+  { name: 'ビーフリード輸液', maker: '大塚', volume: 500, glucosePercent: 7.5, glucoseG: 37.5, category: 'アミノ酸加輸液（PPN）', sugarType: 'G' },
+  { name: 'ビーフリード輸液', maker: '大塚', volume: 1000, glucosePercent: 7.5, glucoseG: 75, category: 'アミノ酸加輸液（PPN）', sugarType: 'G' },
 ];
 
 // IVH商品データ（PDNレクチャー 2.8 TPN基本液とキット製剤の種類と特徴 参照・2024年6月改訂版）
