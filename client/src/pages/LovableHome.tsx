@@ -86,8 +86,17 @@ const sections: SectionDef[] = [
   { id: 14, label: '制作者',                subtitle: 'Dr.いわたつ',                             component: <Section15_Author /> },
 ];
 
+function initialSection(): number {
+  // ?s=N で特定セクションへ直リンク（DM Compass Training等からの導線）
+  if (typeof window !== 'undefined') {
+    const n = parseInt(new URLSearchParams(window.location.search).get('s') ?? '', 10);
+    if (n >= 1 && n <= 14) return n;
+  }
+  return 1;
+}
+
 export default function LovableHome() {
-  const [activeSection, setActiveSection] = useState(1);
+  const [activeSection, setActiveSection] = useState(initialSection);
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -107,6 +116,8 @@ export default function LovableHome() {
     setActiveSection(id);
     setSidebarOpen(false);
     setSearchQuery('');
+    // 共有・ブックマークできるようURLも追従させる
+    try { window.history.replaceState(null, '', `?s=${id}`); } catch {}
   }, []);
 
   const handleSearchResultClick = useCallback((sectionId: number) => {
