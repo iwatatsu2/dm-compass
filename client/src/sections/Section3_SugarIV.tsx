@@ -159,7 +159,11 @@ export function Section3_SugarIV() {
       <AlertBox type="info" title="インスリン混注の基本原則">
         <div className="space-y-1 text-sm">
           <p>ヒューマリンR（速効型インスリン）を輸液バッグに混注</p>
-          <p>末梢輸液：グルコース <strong>5g あたり 1単位</strong>（または 10g あたり 1単位）</p>
+          <div className="rounded-md bg-white/5 px-3 py-2 space-y-1">
+            <p className="font-bold">前提：目的で混注比を使い分ける</p>
+            <p><span className="text-yellow-400 font-bold">ベーサルインスリンを兼ねる</span>なら → グルコース <strong>5g あたり R 1単位</strong></p>
+            <p><span className="text-blue-400 font-bold">点滴の糖の打ち消しだけ</span>なら → グルコース <strong>10g あたり R 1単位</strong></p>
+          </div>
           <p>IVH：グルコース <strong>10g あたり 1単位</strong>（または 15g あたり 1単位）</p>
           <p className="text-yellow-300">※ 血糖コントロール状況により調整。必ず血糖測定を行うこと。</p>
           <p className="text-xs text-muted-foreground mt-1">糖質表記：G=グルコース　S=ソルビトール　M=マルトース　F=フルクトース</p>
