@@ -291,17 +291,33 @@ export default function LovableHome() {
               href="https://dm-compass-training.vercel.app/?utm_source=dm-compass&utm_medium=app&utm_campaign=section-banner"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 block rounded-lg border border-primary/40 bg-primary/10 p-4 transition-colors hover:bg-primary/15"
+              className="mt-6 block overflow-hidden rounded-lg border border-primary/40 bg-primary/10 transition-colors hover:bg-primary/15"
             >
-              <p className="text-xs font-bold tracking-widest text-primary">
-                DM COMPASS TRAINING
-              </p>
-              <p className="mt-1 text-sm font-bold text-foreground">
-                調べたら、次は「判断」を練習する。
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                実際の患者を初診から治療調整まで疑似診療する症例トレーニング。あなたの選択で経過が変わります。無料症例あり →
-              </p>
+              <div className="flex items-stretch">
+                <div className="relative w-32 flex-shrink-0 sm:w-44">
+                  <img
+                    src="/training-patient.jpg"
+                    alt="診察室で検査結果を見つめる患者"
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover object-[30%_center]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background" />
+                  <span className="absolute left-1.5 top-1.5 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-bold text-primary">
+                    症例体験
+                  </span>
+                </div>
+                <div className="min-w-0 p-4">
+                  <p className="text-xs font-bold tracking-widest text-primary">
+                    DM COMPASS TRAINING
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-foreground">
+                    この患者さん、あなたならどう診る？
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    実際の患者を初診から治療調整まで疑似診療する症例トレーニング。あなたの選択で経過が変わります。無料症例あり →
+                  </p>
+                </div>
+              </div>
             </a>
 
             {/* 前後ナビゲーション */}
