@@ -61,8 +61,8 @@ SGLT2阻害薬 euDKA 正常血糖 血糖正常でもケトアシドーシス 手
   {
     id: 'sugar-iv',
     sectionId: 3,
-    title: '糖分入り点滴・IVH',
-    group: '糖分入り点滴・IVH',
+    title: '点滴',
+    group: '点滴',
     content: `
 糖分入り点滴 IVH 中心静脈栄養 商品一覧 インスリン混注量
 5%ブドウ糖液 10%ブドウ糖液 50%ブドウ糖液

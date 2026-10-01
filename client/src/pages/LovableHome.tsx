@@ -72,7 +72,7 @@ interface SectionDef {
 const sections: SectionDef[] = [
   { id: 1,  label: '高血糖緊急症',          subtitle: 'DKA / HHS / euDKA',                       component: <Section1_HyperglycemicEmergency /> },
   { id: 2,  label: 'ケトメーター判定',       subtitle: 'β-HB 基準値',                            component: <Section2_Ketometer /> },
-  { id: 3,  label: '糖分入り点滴・IVH',      subtitle: '商品一覧 & インスリン混注量',              component: <Section3_SugarIV /> },
+  { id: 3,  label: '点滴',                  subtitle: '商品一覧 & インスリン混注量',              component: <Section3_SugarIV /> },
   { id: 4,  label: '糖尿病タイプ診断',       subtitle: '診断基準（学会準拠）',                     component: <Section4_DiabetesType /> },
   { id: 5,  label: '2型治療アルゴリズム',    subtitle: '日本糖尿病学会 2023年版',                  component: <Section5_T2DAlgorithm /> },
   { id: 6,  label: 'HbA1c目標値',           subtitle: '個別化・高齢者対応',                       component: <Section6_HbA1cTarget /> },

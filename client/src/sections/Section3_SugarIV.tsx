@@ -166,6 +166,23 @@ export function Section3_SugarIV() {
         </div>
       </AlertBox>
 
+      {/* 外液と維持液の違い */}
+      <Card className="bg-card border-border px-4 py-3">
+        <p className="font-semibold text-primary text-sm mb-2">外液と維持液の違い</p>
+        <div className="space-y-1.5 text-xs">
+          <p>
+            <span className="font-bold text-cyan-300">外液（細胞外液補充液）</span>
+            ＝生理食塩液・リンゲル液類（等張液）。血管内・間質にとどまるため、
+            <strong>脱水・出血・ショックなどの急速補充</strong>に使う。
+          </p>
+          <p>
+            <span className="font-bold text-orange-300">維持液（3号液）</span>
+            ＝低張液。水と電解質の1日必要量を補う設計で、
+            <strong>経口摂取できない時の水分・電解質の維持</strong>に使う。自由水が多く細胞内にも分布する。
+          </p>
+        </div>
+      </Card>
+
       {/* 等張液（生食・リンゲル類） */}
       <AccordionCard title="等張液（生理食塩液・リンゲル液類）">
         <table className="w-full text-xs">
