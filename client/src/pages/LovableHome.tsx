@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { QrCode } from 'lucide-react';
+import { TRAINING_CASES } from '@/lib/trainingCases';
 
 const DM_URL = 'https://iwatatsu2.github.io/dm-compass/';
 const ENDO_URL = 'https://endoguide.vercel.app/endocrine';
@@ -297,39 +298,46 @@ export default function LovableHome() {
             {/* セクションコンテンツ */}
             {currentSection?.component}
 
-            {/* DM Compass Training への導線（調べる→判断を練習する） */}
-            <a
-              href="https://dm-compass-training.vercel.app/?utm_source=dm-compass&utm_medium=app&utm_campaign=section-banner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 block overflow-hidden rounded-lg border border-primary/40 bg-primary/10 transition-colors hover:bg-primary/15"
-            >
-              <div className="flex items-stretch">
-                <div className="relative w-32 flex-shrink-0 sm:w-44">
-                  <img
-                    src="/training-patient.jpg"
-                    alt="診察室で検査結果を見つめる患者"
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover object-[30%_center]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background" />
-                  <span className="absolute left-1.5 top-1.5 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-bold text-primary">
-                    症例体験
-                  </span>
-                </div>
-                <div className="min-w-0 p-4">
-                  <p className="text-xs font-bold tracking-widest text-primary">
-                    DM COMPASS TRAINING
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-foreground">
-                    この患者さん、あなたならどう診る？
-                  </p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    実際の患者を初診から治療調整まで疑似診療する症例トレーニング。あなたの選択で経過が変わります。無料症例あり →
-                  </p>
-                </div>
-              </div>
-            </a>
+            {/* 症例トレーニングへの入口（調べる→判断を練習する）。対応する症例があるセクションだけ */}
+            {(() => {
+              const tc = TRAINING_CASES[activeSection];
+              if (!tc) return null;
+              return (
+                <a
+                  href={tc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 block overflow-hidden rounded-lg border border-primary/40 bg-primary/10 transition-colors hover:bg-primary/15"
+                >
+                  <div className="flex items-stretch">
+                    <div className="relative w-28 flex-shrink-0 sm:w-40">
+                      <img
+                        src="/training-patient.jpg"
+                        alt="診察室で検査結果を見つめる患者"
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover object-[30%_center]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background" />
+                      <span className="absolute left-1.5 top-1.5 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-bold text-primary">
+                        症例で練習
+                      </span>
+                    </div>
+                    <div className="min-w-0 p-4">
+                      <p className="text-sm font-bold text-foreground">
+                        この判断を、症例で練習する
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-foreground/90">
+                        {tc.title}
+                      </p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        {tc.app === 'endo' ? 'Endo' : 'DM'} Compass Training ・{' '}
+                        {tc.free ? '最後まで無料で体験できます' : '最初の設問まで無料で体験できます'} →
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              );
+            })()}
 
             {/* 前後ナビゲーション */}
             <div className="flex justify-between mt-6 pt-4 border-t border-border">
